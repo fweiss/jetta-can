@@ -43,6 +43,7 @@ void writeTachometer(unsigned long rpm) {
     unsigned long id = 0x280;
     byte ext = 0;
     *zz = rpm * 4;
+    message[7] = 255;
 
     status = CAN.sendMsgBuf(id, ext, sizeof(message), message);
     if (status == CAN_OK) {
@@ -51,6 +52,85 @@ void writeTachometer(unsigned long rpm) {
         Serial.print("send error: ");
         Serial.println(status);
     }
+}
+
+#define lo8(x) x
+#define hi8(x) x
+
+void writeSpeed(byte kmph) {
+//    byte message[8] = { 0,0,0,0,0,0,0,0 };
+    byte speedL =100;
+    byte speedH = 100;
+    byte drive_mode = B01000000;
+    unsigned short distance_counter = 40;
+    byte message[8] = { 0xFF, speedL, speedH, drive_mode, 0x00, lo8(distance_counter), hi8(distance_counter), 0xad };
+
+    message[1] = 100;
+
+    byte status;
+//    unsigned long id = 0x320; // motor speed?
+    unsigned long id = 0x5A0;
+    byte ext = 0;
+
+    status = CAN.sendMsgBuf(id, ext, sizeof(message), message);
+    if (status == CAN_OK) {
+        Serial.println("send OK");
+    } else {
+        Serial.print("send error: ");
+        Serial.println(status);
+    }
+
+}
+
+void writeIndicators() {
+    const byte highbeam = B01000000;
+    const byte foglamp = B00100000;
+    byte lightMode = highbeam + foglamp;
+
+    const byte trunklidAjar = B00100000;
+    const byte doorAjar = B00010000;
+    byte ajar = trunklidAjar + doorAjar; // not implemented?
+
+    byte backlight = 0; // B00000001=fade off
+
+    byte turnsignal = 0; // left=B00000001, right=B00000010, with sound
+
+    byte key_battery = B10000000; // low key battery shown in LCD, over mileage
+
+    const byte checkLamp = 0; //B00010000; // light bulb signal
+    const byte checkClutch = 0; //B00000001; // lcd P/N indicator
+    byte check_clutch = checkLamp | checkClutch;
+
+    byte message[8] = { turnsignal, ajar, backlight, 0, check_clutch, key_battery, 0, lightMode };
+
+    byte status;
+    unsigned long id = 0x470;
+    byte ext = 0;
+    status = CAN.sendMsgBuf(id, ext, sizeof(message), message);
+    if (status == CAN_OK) {
+        Serial.println("send OK");
+    } else {
+        Serial.print("send error: ");
+        Serial.println(status);
+    }
+}
+
+void writeAbs() {
+    byte speedL = 0;
+    byte speedH = 0;
+    byte message[8] = { 0x18, speedL, speedH, 0x00, 0xfe, 0xfe, 0x00, 0xff };
+    byte status;
+    unsigned long id = 0x1A0;
+    byte ext = 0;
+
+    status = CAN.sendMsgBuf(id, ext, sizeof(message), message);
+    if (status == CAN_OK) {
+        Serial.println("send OK");
+    } else {
+        Serial.print("send error: ");
+        Serial.println(status);
+    }
+
 }
 
 void setup() {
@@ -80,6 +160,10 @@ void loop()
 
 //        traceReceive();
     }
-    writeTachometer(2400);
-    delay(100);
+//    writeTachometer(2400);
+//    writeSpeed(45);
+//    writeAbs();
+    writeIndicators();
+
+    delay(20);
 }
