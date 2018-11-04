@@ -54,15 +54,17 @@ void writeTachometer(unsigned long rpm) {
     }
 }
 
-#define lo8(x) x
-#define hi8(x) x
+#define lo8(x) (x & 0xFF)
+#define hi8(x) (x >> 8)
+
+unsigned short distance_counter = 40;
 
 void writeSpeed(byte kmph) {
 //    byte message[8] = { 0,0,0,0,0,0,0,0 };
-    byte speedL =100;
-    byte speedH = 100;
-    byte drive_mode = B01000000;
-    unsigned short distance_counter = 40;
+    byte speedL = 0;
+    byte speedH = 50;
+    byte drive_mode = 255; //B01000000;
+    distance_counter += 40;
     byte message[8] = { 0xFF, speedL, speedH, drive_mode, 0x00, lo8(distance_counter), hi8(distance_counter), 0xad };
 
     message[1] = 100;
@@ -74,7 +76,7 @@ void writeSpeed(byte kmph) {
 
     status = CAN.sendMsgBuf(id, ext, sizeof(message), message);
     if (status == CAN_OK) {
-        Serial.println("send OK");
+        Serial.println("send speed OK");
     } else {
         Serial.print("send error: ");
         Serial.println(status);
@@ -87,9 +89,11 @@ void writeIndicators() {
     const byte foglamp = B00100000;
     byte lightMode = highbeam + foglamp;
 
+    // hmm non-zero displays door, but 32 doesn't
+    // maybe 5 LSB bits refer to 4 doors + trunk?
     const byte trunklidAjar = B00100000;
     const byte doorAjar = B00010000;
-    byte ajar = trunklidAjar + doorAjar; // not implemented?
+    byte ajar = 1; //trunklidAjar | doorAjar; // trunk ajar light implemented?
 
     byte backlight = 0; // B00000001=fade off
 
@@ -105,6 +109,26 @@ void writeIndicators() {
 
     byte status;
     unsigned long id = 0x470;
+    byte ext = 0;
+    status = CAN.sendMsgBuf(id, ext, sizeof(message), message);
+    if (status == CAN_OK) {
+        Serial.println("send OK");
+    } else {
+        Serial.print("send error: ");
+        Serial.println(status);
+    }
+}
+
+// seemsto not be implemented
+void writeEngine() {
+    const byte waterTemp = B00010000;
+    byte engine = 255;
+    byte dieselPreheat = 255;
+
+    byte message[8] = { 0, engine, 0, 0, 0, dieselPreheat, 0, 0 };
+
+    byte status;
+    unsigned long id = 0x480;
     byte ext = 0;
     status = CAN.sendMsgBuf(id, ext, sizeof(message), message);
     if (status == CAN_OK) {
@@ -160,10 +184,11 @@ void loop()
 
 //        traceReceive();
     }
-//    writeTachometer(2400);
-//    writeSpeed(45);
-//    writeAbs();
+    writeTachometer(2400);
+    writeSpeed(45);
+    writeAbs();
     writeIndicators();
+    writeEngine();
 
-    delay(20);
+    delay(10);
 }
