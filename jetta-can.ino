@@ -5,6 +5,9 @@
 
 MCP_CAN CAN(9);
 
+const unsigned long speedCanId = 0x04;
+const unsigned long rpmCanId = 0x05;
+
 void traceReceive() {
     unsigned long id;
     byte ext;
@@ -32,6 +35,24 @@ void traceReceive() {
     Serial.println();
 }
 
+void writeTachometer(unsigned long rpm) {
+    byte message[8] = { 0x49, 0x0E, 0xCC, 0x0D, 0x0e, 0x00, 0x1B, 0x0E };
+    unsigned short *zz = (unsigned short*)&message[2];
+
+    byte status;
+    unsigned long id = 0x280;
+    byte ext = 0;
+    *zz = rpm * 24;
+
+    status = CAN.sendMsgBuf(id, ext, sizeof(message), message);
+    if (status == CAN_OK) {
+        Serial.println("send OK");
+    } else {
+        Serial.print("send error: ");
+        Serial.println(status);
+    }
+}
+
 void setup() {
     Serial.begin(115700);
     Serial.println("started setup");
@@ -57,6 +78,8 @@ void loop()
 //        Serial.print("rxtxstatus: ");
 //        Serial.println(rxTxStatus);
 
-        traceReceive();
+//        traceReceive();
     }
+    writeTachometer(100);
+    delay(100);
 }
