@@ -42,7 +42,7 @@ void writeTachometer(unsigned long rpm) {
     byte status;
     unsigned long id = 0x280;
     byte ext = 0;
-    *zz = rpm * 24;
+    *zz = rpm * 4;
 
     status = CAN.sendMsgBuf(id, ext, sizeof(message), message);
     if (status == CAN_OK) {
@@ -80,6 +80,6 @@ void loop()
 
 //        traceReceive();
     }
-    writeTachometer(100);
+    writeTachometer(2400);
     delay(100);
 }
