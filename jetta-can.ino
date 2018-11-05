@@ -2,8 +2,11 @@
 
 #include <SPI.h>
 #include "mcp_can.h"
+#include "BasicFrame.h"
 
 MCP_CAN CAN(9);
+
+BasicFrame indicators("Indicators", 0x470);
 
 const unsigned long speedCanId = 0x04;
 const unsigned long rpmCanId = 0x05;
@@ -187,7 +190,8 @@ void loop()
     writeTachometer(2400);
     writeSpeed(45);
     writeAbs();
-    writeIndicators();
+//    writeIndicators();
+    indicators.send(CAN);
     writeEngine();
 
     delay(10);
