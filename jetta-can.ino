@@ -66,7 +66,13 @@ void writeSpeed(byte kmph) {
 //    byte message[8] = { 0,0,0,0,0,0,0,0 };
     byte speedL = 0;
     byte speedH = 50;
-    byte drive_mode = 255; //B01000000;
+
+    const byte abs = B0000001;
+    const byte offroad = B00000010;
+    const byte tirePressure = B00001000;
+    const byte handbrake = B00000100; // not implemented
+    byte drive_mode = 0;
+
     distance_counter += 40;
     byte message[8] = { 0xFF, speedL, speedH, drive_mode, 0x00, lo8(distance_counter), hi8(distance_counter), 0xad };
 
