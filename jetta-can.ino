@@ -46,7 +46,7 @@ void writeTachometer(unsigned long rpm) {
     unsigned long id = 0x280;
     byte ext = 0;
     *zz = rpm * 4;
-    message[7] = 255;
+//    message[7] = 255;
 
     status = CAN.sendMsgBuf(id, ext, sizeof(message), message);
     if (status == CAN_OK) {
@@ -122,11 +122,13 @@ void writeSpeed(byte kmph) {
 //    }
 //}
 
-// seemsto not be implemented
 void writeEngine() {
-    const byte waterTemp = B00010000;
-    byte engine = 255;
-    byte dieselPreheat = 255;
+    const byte engineControlMalfunction = B00000100;
+//    const byte waterTemp = B00010000;
+    byte engine = 0;
+
+    const byte fuelCapNotTight = B00010000;
+    byte dieselPreheat = 0;
 
     byte message[8] = { 0, engine, 0, 0, 0, dieselPreheat, 0, 0 };
 
@@ -143,8 +145,8 @@ void writeEngine() {
 }
 
 void writeAbs() {
-    byte speedL = 0;
-    byte speedH = 0;
+    byte speedL = 50;
+    byte speedH = 50;
     byte message[8] = { 0x18, speedL, speedH, 0x00, 0xfe, 0xfe, 0x00, 0xff };
     byte status;
     unsigned long id = 0x1A0;
