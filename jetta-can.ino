@@ -42,39 +42,6 @@ void traceReceive() {
     Serial.println();
 }
 
-void xwriteTachometer(unsigned long rpm) {
-//    byte message[8] = { 0x49, 0x0E, 0xCC, 0x0D, 0x0e, 0x00, 0x1B, 0x0E };
-
-    struct {
-        // byte 0
-        unsigned char : 4;
-        unsigned char lowIdleSwitch : 1; // acc not pressed
-        unsigned char : 2;
-        unsigned char clutchSwitch : 1; // clutch not pressed
-        unsigned char byte1 : 8;
-        // byte 2, 3
-        unsigned short rpm : 16;
-        unsigned char byte4 : 8;
-        unsigned char accelatorPosition : 8;
-        unsigned char byte6 : 8;
-        unsigned char byte7 : 8;
-    } frame;
-    unsigned char *bytes = (unsigned char*)&frame;
-
-    frame.rpm = rpm * 4;
-    // none of the other values appear to have an effect
-
-    unsigned long id = 0x280;
-    byte ext = 0;
-
-    byte status = CAN.sendMsgBuf(id, ext, 8, bytes);
-    if (status == CAN_OK) {
-        Serial.println("send OK");
-    } else {
-        Serial.print("send error: ");
-        Serial.println(status);
-    }
-}
 
 #define lo8(x) (x & 0xFF)
 #define hi8(x) (x >> 8)
@@ -214,7 +181,7 @@ void loop()
 
 //        traceReceive();
     }
-//    writeTachometer(2400);
+
     ecu280Frame.setRpm(1800);
     ecu280Frame.sendFrame(CAN);
 
