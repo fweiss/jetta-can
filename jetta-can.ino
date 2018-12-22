@@ -41,16 +41,33 @@ void traceReceive() {
 }
 
 void writeTachometer(unsigned long rpm) {
-    byte message[8] = { 0x49, 0x0E, 0xCC, 0x0D, 0x0e, 0x00, 0x1B, 0x0E };
-    unsigned short *zz = (unsigned short*)&message[2];
+//    byte message[8] = { 0x49, 0x0E, 0xCC, 0x0D, 0x0e, 0x00, 0x1B, 0x0E };
+//    unsigned short *zz = (unsigned short*)&message[2];
+
+    struct {
+        // byte 0
+        unsigned char :4;
+        unsigned char lowIdleSwitch :1; // acc not pressed
+        unsigned char :2;
+        unsigned char clutchSwitch :1; // clutch not pressed
+        unsigned char byte1 :8;
+        // byte 2, 3
+        unsigned short rpm :16;
+        unsigned char byte4 :8;
+        unsigned char accelatorPosition :8;
+        unsigned char byte6 :8;
+        unsigned char byte7 :8;
+    } m;
+    m.rpm = rpm * 4;
 
     byte status;
     unsigned long id = 0x280;
     byte ext = 0;
-    *zz = rpm * 4;
+//    *zz = rpm * 4;
 //    message[7] = 255;
 
-    status = CAN.sendMsgBuf(id, ext, sizeof(message), message);
+//    status = CAN.sendMsgBuf(id, ext, sizeof(message), message);
+    status = CAN.sendMsgBuf(id, ext, 8, (const unsigned char*)&m);
     if (status == CAN_OK) {
         Serial.println("send OK");
     } else {
@@ -197,10 +214,9 @@ void loop()
 
 //        traceReceive();
     }
-    writeTachometer(1800);
+    writeTachometer(2400);
     writeSpeed(45);
     writeAbs();
-//    writeIndicators();
     indicators.send(CAN);
     writeEngine();
     airbag.send(CAN);
