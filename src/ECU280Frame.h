@@ -1,25 +1,16 @@
 #pragma once
 
-// fixme decouple
-#include "mcp_can.h"
+#include "BaseFrame.h"
 
-//#include <functional>
-//
-//typedef std::function<void(unsigned long, unsigned char, unsigned char, unsigned char*)> SendMessage;
-
-
-class ECU280Frame
-{
+class ECU280Frame : public BaseFrame {
 public:
     ECU280Frame();
     virtual ~ECU280Frame();
 
-    const unsigned long id = 0x280;
-    const byte ext = 0;
-
     void setRpm(unsigned short rpm);
     const unsigned char* getBytes();
-    void sendFrame(MCP_CAN can);
+
+    void send(MCP_CAN can) override;
 private:
     struct {
         // byte 0

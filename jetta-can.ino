@@ -148,8 +148,8 @@ void loop()
 //        traceReceive();
     }
 
-    ecu280Frame.setRpm(1800);
-    ecu280Frame.sendFrame(CAN);
+    ecu280Frame.setRpm(2200);
+    ecu280Frame.send(CAN);
 
 
     writeSpeed(45);
