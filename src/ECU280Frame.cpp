@@ -16,9 +16,6 @@ const unsigned char* ECU280Frame::getBytes() {
 }
 
 void ECU280Frame::sendFrame(MCP_CAN can) {
-    unsigned long id = 0x280;
-    byte ext = 0;
-
     byte status = can.sendMsgBuf(id, ext, 8, (unsigned char*)&frame);
     if (status == CAN_OK) {
         Serial.println("send OK");

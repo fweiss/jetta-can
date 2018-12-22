@@ -14,6 +14,9 @@ public:
     ECU280Frame();
     virtual ~ECU280Frame();
 
+    const unsigned long id = 0x280;
+    const byte ext = 0;
+
     void setRpm(unsigned short rpm);
     const unsigned char* getBytes();
     void sendFrame(MCP_CAN can);
