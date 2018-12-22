@@ -8,8 +8,9 @@ public:
     virtual ~BasicFrame();
 
     unsigned long getId() { return this->id; }
-    byte send(MCP_CAN can);
-
+    virtual byte send(MCP_CAN can);
+protected:
+    byte sendMessage(MCP_CAN can, byte message[8]);
 private:
     const char* name;
     unsigned long id;

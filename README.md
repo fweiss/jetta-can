@@ -1,12 +1,64 @@
-received ids
-320
-420
-621
-727
+# Jetta CAN
 
-Volkswagen Communication
-But does seem to have the CAD IDs
-https://www.snapon.com/Files/Diagnostics/UserManuals/VolkswagenAudiVehicleCommunicationSoftwareManual_EAZ0031B01D.pdf
+Control the gauges and lights of a Jetta instrument cluster via CAN bus.
+
+## Parts
+Using the following:
+
+- 2014 Jetta instrument cluster (used, Ebay)
+- Arduino UNO
+- Seeed Studio CAN bus shield
+- hookup wires and cables
+- AC-DC 12V PSU (Velleman)
+
+## Connections
+Found a pretty good reference.
+
+- 16 GND (31)
+- 28 CANH
+- 29 CANL
+- 31 +12V ignition (15)
+- 30 +12V battery (30)
+
+### Quick connect
+Until proper wiring harness:
+
+TOP
+27 11
+28 12
+29 13
+30 14
+31 15
+32 16
+BOTTOM
+
+Use 8-pin F-F for pins 32-27=ROYGUB
+Use 3 pin F-F for pins 16-14=BRW
+
+### Cluster boot
+16=GND, 32=B, 31=B
+
+
+
+
+## received ids
+The cluster emits the following:
+
+- 320
+- 420
+- 621
+- 727
+
+## transmit ids
+the cluster receives the following PGNs:
+
+- 050 airbag
+- 1A0 abs
+- 280 tachometer
+- 470 operating lights, warning lights, doors
+- 480 engine malfunction, fuel cap
+- 5A0 speed and drive mode
+
 
 ## Instrument indicators
 
@@ -56,4 +108,12 @@ https://en.wikipedia.org/wiki/OBD-II_PIDs
 
 Dashboard symbols
 https://www.vwserviceandparts.com/service/volkswagen-dashboard-indicator-lights/
+(different than the 2013)sss
+
+A good resource including a sample ino file. Got a lot of the data details here.
+https://hackaday.io/project/6288-volkswagen-can-bus-gaming
+
+Volkswagen Communication
+But does seem to have the CAN IDs
+https://www.snapon.com/Files/Diagnostics/UserManuals/VolkswagenAudiVehicleCommunicationSoftwareManual_EAZ0031B01D.pdf
 

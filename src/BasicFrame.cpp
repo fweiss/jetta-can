@@ -9,6 +9,21 @@ BasicFrame::~BasicFrame() {
     // TODO Auto-generated destructor stub
 }
 
+byte BasicFrame::sendMessage(MCP_CAN can, byte message[8]) {
+    byte status;
+    byte ext = 0;
+    status = can.sendMsgBuf(id, ext, sizeof(message), message);
+    if (status == CAN_OK) {
+        Serial.print("send ");
+        Serial.print(name);
+        Serial.println(" OK");
+    } else {
+        Serial.print("send error: ");
+        Serial.println(status);
+    }
+    return status;
+}
+
 byte BasicFrame::send(MCP_CAN can) {
     const byte highbeam = B01000000;
     const byte foglamp = B00100000;
@@ -32,16 +47,17 @@ byte BasicFrame::send(MCP_CAN can) {
 
     byte message[8] = { turnsignal, ajar, backlight, 0, check_clutch, key_battery, 0, lightMode };
 
-    byte status;
-    byte ext = 0;
-    status = can.sendMsgBuf(id, ext, sizeof(message), message);
-    if (status == CAN_OK) {
-        Serial.print("send ");
-        Serial.print(name);
-        Serial.println(" OK");
-    } else {
-        Serial.print("send error: ");
-        Serial.println(status);
-    }
-    return status;
+//    byte status;
+//    byte ext = 0;
+//    status = can.sendMsgBuf(id, ext, sizeof(message), message);
+//    if (status == CAN_OK) {
+//        Serial.print("send ");
+//        Serial.print(name);
+//        Serial.println(" OK");
+//    } else {
+//        Serial.print("send error: ");
+//        Serial.println(status);
+//    }
+//    return status;
+    return sendMessage(can, message);
 }

@@ -3,10 +3,12 @@
 #include <SPI.h>
 #include "mcp_can.h"
 #include "BasicFrame.h"
+#include "AirbagFrame.h"
 
 MCP_CAN CAN(9);
 
 BasicFrame indicators("Indicators", 0x470);
+AirbagFrame airbag;
 
 const unsigned long speedCanId = 0x04;
 const unsigned long rpmCanId = 0x05;
@@ -195,12 +197,13 @@ void loop()
 
 //        traceReceive();
     }
-    writeTachometer(2400);
+    writeTachometer(1800);
     writeSpeed(45);
     writeAbs();
 //    writeIndicators();
     indicators.send(CAN);
     writeEngine();
+    airbag.send(CAN);
 
     delay(10);
 }
