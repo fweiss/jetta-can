@@ -119,6 +119,19 @@ https://www.snapon.com/Files/Diagnostics/UserManuals/VolkswagenAudiVehicleCommun
 
 http://www.copperhilltechnologies.com/can-bus-guide-message-frame-format
 
-### Decoding the CAN bus
-Hacking 0x280: http://ev-a2.blogspot.com/2013/06/can-bus-analysis-started.html
+### Bitfields
+We can use bit fields, shift masks, B-literal masks.
+Bit fields are not very portable.
+Here's some info on a C++ way to have portable bit fields: https://stackoverflow.com/questions/31726191/is-there-a-portable-alternative-to-c-bitfields
 
+### Decoding the CAN bus
+
+#### General decoding
+https://hackaday.io/project/6288/instructions
+https://christian-rossow.de/publications/vatican-ches2016.pdf
+
+#### Hacking 0x280: 
+http://ev-a2.blogspot.com/2013/06/can-bus-analysis-started.html
+
+### 0x470
+Turning lights 2?

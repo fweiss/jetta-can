@@ -5,12 +5,14 @@
 #include "BasicFrame.h"
 #include "AirbagFrame.h"
 #include "ECU280Frame.h"
+#include "Lights470Frame.h"
 
 MCP_CAN CAN(9);
 
 BasicFrame indicators("Indicators", 0x470);
 AirbagFrame airbag;
 ECU280Frame ecu280Frame;
+Lights470Frame lightframe;
 
 const unsigned long speedCanId = 0x04;
 const unsigned long rpmCanId = 0x05;
@@ -185,9 +187,14 @@ void loop()
     ecu280Frame.setRpm(1800);
     ecu280Frame.sendFrame(CAN);
 
+
     writeSpeed(45);
     writeAbs();
-    indicators.send(CAN);
+
+//    indicators.send(CAN);
+    lightframe.setFoglamp(true);
+    lightframe.sendFrame(CAN);
+
     writeEngine();
     airbag.send(CAN);
 
