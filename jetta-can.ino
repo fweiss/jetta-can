@@ -4,11 +4,13 @@
 #include "mcp_can.h"
 #include "BasicFrame.h"
 #include "AirbagFrame.h"
+#include "ECU280Frame.h"
 
 MCP_CAN CAN(9);
 
 BasicFrame indicators("Indicators", 0x470);
 AirbagFrame airbag;
+ECU280Frame ecu280Frame;
 
 const unsigned long speedCanId = 0x04;
 const unsigned long rpmCanId = 0x05;
@@ -40,7 +42,7 @@ void traceReceive() {
     Serial.println();
 }
 
-void writeTachometer(unsigned long rpm) {
+void xwriteTachometer(unsigned long rpm) {
 //    byte message[8] = { 0x49, 0x0E, 0xCC, 0x0D, 0x0e, 0x00, 0x1B, 0x0E };
 
     struct {
@@ -56,14 +58,16 @@ void writeTachometer(unsigned long rpm) {
         unsigned char accelatorPosition : 8;
         unsigned char byte6 : 8;
         unsigned char byte7 : 8;
-    } m;
-    m.rpm = rpm * 4;
+    } frame;
+    unsigned char *bytes = (unsigned char*)&frame;
 
-    byte status;
+    frame.rpm = rpm * 4;
+    // none of the other values appear to have an effect
+
     unsigned long id = 0x280;
     byte ext = 0;
 
-    status = CAN.sendMsgBuf(id, ext, 8, (const unsigned char*)&m);
+    byte status = CAN.sendMsgBuf(id, ext, 8, bytes);
     if (status == CAN_OK) {
         Serial.println("send OK");
     } else {
@@ -210,7 +214,10 @@ void loop()
 
 //        traceReceive();
     }
-    writeTachometer(2400);
+//    writeTachometer(2400);
+    ecu280Frame.setRpm(1800);
+    ecu280Frame.sendFrame(CAN);
+
     writeSpeed(45);
     writeAbs();
     indicators.send(CAN);

@@ -117,6 +117,8 @@ Volkswagen Communication
 But does seem to have the CAN IDs
 https://www.snapon.com/Files/Diagnostics/UserManuals/VolkswagenAudiVehicleCommunicationSoftwareManual_EAZ0031B01D.pdf
 
+http://www.copperhilltechnologies.com/can-bus-guide-message-frame-format
+
 ### Decoding the CAN bus
 Hacking 0x280: http://ev-a2.blogspot.com/2013/06/can-bus-analysis-started.html
 
