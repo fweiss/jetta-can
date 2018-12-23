@@ -9,8 +9,6 @@ public:
 
     void setRpm(unsigned short rpm);
     const unsigned char* getBytes();
-
-//    void send(MCP_CAN can);
 private:
     struct {
         // byte 0

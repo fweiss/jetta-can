@@ -16,8 +16,6 @@ public:
 
     void setHighbeam(bool onOff);
     void setFoglamp(bool onOff);
-
-//    void sendFrame(MCP_CAN can);
 private:
     struct {
         // byte 0

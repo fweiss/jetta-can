@@ -5,26 +5,3 @@ BaseFrame::BaseFrame(const unsigned long id, const unsigned char ext) : id(id), 
 
 BaseFrame::~BaseFrame() {
 }
-
-//void BaseFrame::send(MCP_CAN can) {
-//    byte status = can.sendMsgBuf(id, ext, 8, getBytes());
-//    if (status == CAN_OK) {
-//        Serial.println("send OK");
-//    } else {
-//        Serial.print("send error: ");
-//        Serial.println(status);
-//    }
-//}
-//
-//// deprecated
-//void BaseFrame::sendFrame(MCP_CAN can) {
-//    byte status = can.sendMsgBuf(id, ext, 8, getBytes());
-//    if (status == CAN_OK) {
-//        Serial.println("send OK");
-//    } else {
-//        Serial.print("send error: ");
-//        Serial.println(status);
-//    }
-//}
-
-
