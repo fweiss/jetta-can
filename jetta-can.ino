@@ -11,6 +11,7 @@
 #include "VehicleSpeed5A0Frame.h"
 #include "Engine480Frame.h"
 #include "ABS1A0Frame.h"
+#include "DefaultFrame.h"
 
 MCP_CAN CAN(9);
 
@@ -22,6 +23,7 @@ Airbag050Frame airbagFrame;
 VehicleSpeed5A0Frame vehicleSpeed;
 Engine480Frame engine;
 ABS1A0Frame absFrame;
+DefaultFrame defaultFrame;
 
 void traceReceive() {
     unsigned long id;
@@ -94,6 +96,7 @@ void loop()
     app.send(vehicleSpeed);
     app.send(ecu280Frame);
     app.send(absFrame);
+    app.send(defaultFrame);
 
-    delay(10);
+    delay(100);
 }
