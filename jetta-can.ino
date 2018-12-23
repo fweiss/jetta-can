@@ -21,9 +21,6 @@ Airbag050Frame airbagFrame;
 VehicleSpeed5A0Frame vehicleSpeed;
 Engine480Frame engine;
 
-//const unsigned long speedCanId = 0x04;
-//const unsigned long rpmCanId = 0x05;
-
 void traceReceive() {
     unsigned long id;
     byte ext;
@@ -50,8 +47,6 @@ void traceReceive() {
     }
     Serial.println();
 }
-
-//unsigned short distance_counter = 40;
 
 void writeAbs() {
     byte speedL = 50;
@@ -100,25 +95,20 @@ void loop()
     }
 
     ecu280Frame.setRpm(3200);
-//    ecu280Frame.send(CAN);
     app.send(ecu280Frame);
 
     vehicleSpeed.setSpeedMph(120.0);
-//    vehicleSpeed.send(CAN);
     app.send(vehicleSpeed);
 
     writeAbs();
 
     lightframe.setFoglamp(true);
-//    lightframe.sendFrame(CAN);
     app.send(lightframe);
 
     engine.setFuelCapNotTight(false);
-//    engine.send(CAN);
     app.send(engine);
 
     airbagFrame.setSeatbeltWarning(false);
-//    airbagFrame.send(CAN);
     app.send(airbagFrame);
 
     delay(10);
