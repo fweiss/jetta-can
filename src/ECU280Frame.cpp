@@ -15,7 +15,7 @@ const unsigned char* ECU280Frame::getBytes() {
     return (unsigned char*)&frame;
 }
 
-void ECU280Frame::send(MCP_CAN can) {
-    sendFrame(can);
-}
+//void ECU280Frame::send(MCP_CAN can) {
+//    sendFrame(can);
+//}
 

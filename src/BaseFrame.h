@@ -1,7 +1,7 @@
 #pragma once
 
 // fixme decouple
-#include "mcp_can.h"
+//#include "mcp_can.h"
 
 //#include <functional>
 //
@@ -9,14 +9,14 @@
 
 class BaseFrame {
 public:
-    BaseFrame(const unsigned long id, const byte ext);
+    BaseFrame(const unsigned long id, const unsigned char ext);
     virtual ~BaseFrame();
 
     const unsigned long id;
-    const byte ext;
+    const unsigned char ext;
 
-    void send(MCP_CAN can);
+//    void send(MCP_CAN can);
     virtual const unsigned char* getBytes() = 0;
 protected:
-    void sendFrame(MCP_CAN can);
+//    void sendFrame(MCP_CAN can);
 };

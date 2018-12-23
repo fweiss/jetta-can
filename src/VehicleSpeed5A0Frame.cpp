@@ -1,7 +1,7 @@
 #include <VehicleSpeed5A0Frame.h>
 
 VehicleSpeed5A0Frame::VehicleSpeed5A0Frame() : BaseFrame(0x5a0, 0) {
-    byte* raw = getBytes();
+    unsigned char* raw = getBytes();
 }
 
 VehicleSpeed5A0Frame::~VehicleSpeed5A0Frame() {

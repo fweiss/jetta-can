@@ -1,6 +1,6 @@
 #pragma once
 
-#include "mcp_can.h"
+//#include "mcp_can.h"
 
 #include "BaseFrame.h"
 
@@ -12,12 +12,12 @@ public:
     unsigned char* getBytes() override;
 
     const unsigned long id = 0x470;
-    const byte ext = 0;
+    const unsigned char ext = 0;
 
     void setHighbeam(bool onOff);
     void setFoglamp(bool onOff);
 
-    void sendFrame(MCP_CAN can);
+//    void sendFrame(MCP_CAN can);
 private:
     struct {
         // byte 0
