@@ -1,8 +1,6 @@
 #include <BaseFrame.h>
 
-BaseFrame::BaseFrame(const unsigned long id, const byte ext) {
-    this-> id = id;
-    this->ext = ext;
+BaseFrame::BaseFrame(const unsigned long id, const byte ext) : id(id), ext(ext) {
 }
 
 BaseFrame::~BaseFrame() {

@@ -3,6 +3,8 @@
 #include <SPI.h>
 #include "mcp_can.h"
 
+#include "CANApplication.h"
+
 #include "ECU280Frame.h"
 #include "Lights470Frame.h"
 #include "Airbag050Frame.h"
@@ -10,6 +12,8 @@
 #include "Engine480Frame.h"
 
 MCP_CAN CAN(9);
+
+CANApplication app(CAN);
 
 ECU280Frame ecu280Frame;
 Lights470Frame lightframe;
@@ -95,22 +99,27 @@ void loop()
 //        traceReceive();
     }
 
-    ecu280Frame.setRpm(2200);
-    ecu280Frame.send(CAN);
+    ecu280Frame.setRpm(3200);
+//    ecu280Frame.send(CAN);
+    app.send(ecu280Frame);
 
     vehicleSpeed.setSpeedMph(120.0);
-    vehicleSpeed.send(CAN);
+//    vehicleSpeed.send(CAN);
+    app.send(vehicleSpeed);
 
     writeAbs();
 
     lightframe.setFoglamp(false);
     lightframe.sendFrame(CAN);
+//    app.send(lightframe);
 
     engine.setFuelCapNotTight(false);
-    engine.send(CAN);
+//    engine.send(CAN);
+    app.send(engine);
 
     airbagFrame.setSeatbeltWarning(false);
-    airbagFrame.send(CAN);
+//    airbagFrame.send(CAN);
+    app.send(airbagFrame);
 
     delay(10);
 }
