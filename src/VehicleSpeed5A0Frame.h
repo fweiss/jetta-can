@@ -12,6 +12,8 @@ public:
 
     void setSpeedMph(float mph);
     void setDistanceTraveled(unsigned long distance);
+    void setAbsWarning(bool onOff) { frame.abs = onOff; }
+    void setOffroadWarning(bool onOff) { frame.offroad = onOff; }
 private:
     struct {
         // byte 0

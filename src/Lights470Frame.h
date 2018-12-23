@@ -16,6 +16,7 @@ public:
 
     void setHighbeam(bool onOff);
     void setFoglamp(bool onOff);
+    void setDoorAjar(unsigned char doorNumber);
 private:
     struct {
         // byte 0

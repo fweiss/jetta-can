@@ -18,18 +18,18 @@ Starting from the bottom CW
 - traction off
 - lane sensing
 - EPC
-- mirror?
-- oil
-- for bean
-- high beam
-- gas
-- engine chack
+- fuel cap (Y)
+- oil (R/Y)
+- high beam (B)
+- fog beam (Y)
+- gas (Y)
+- engine check
 
 Inner CW
 - washer level
 - battery
 - parking brake
-- interiro light
+- interior light
 - steering
 
 Extra
@@ -40,13 +40,13 @@ Extra
 
 starting from bottom CW
 - spill?
-- airbag
+- airbag (Y)
 - break wear
-- ABS
-- skid
+- ABS (Y)
+- offroad (Y)
 - brake
 - cruise
-- tire
+- tire pressure (Y)
 - lane
 - DRL
 

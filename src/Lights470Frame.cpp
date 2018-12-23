@@ -17,3 +17,8 @@ void Lights470Frame::setHighbeam(bool onOff) {
 void Lights470Frame::setFoglamp(bool onOff) {
     frame.foglamp = onOff;
 }
+
+void Lights470Frame::setDoorAjar(unsigned char index) {
+    unsigned char* raw = getBytes();
+    raw[1] |= 1 << index;
+}

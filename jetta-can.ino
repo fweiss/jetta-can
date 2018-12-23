@@ -83,8 +83,12 @@ void loop()
     ecu280Frame.setRpm(3200);
 
     vehicleSpeed.setSpeedMph(120.0);
+    vehicleSpeed.setAbsWarning(false);
+    vehicleSpeed.setOffroadWarning(false);
 
     lightframe.setFoglamp(false);
+    lightframe.setHighbeam(false);
+//    lightframe.setDoorAjar(1);
 
     engine.setFuelCapNotTight(false);
 
@@ -98,5 +102,5 @@ void loop()
     app.send(absFrame);
     app.send(defaultFrame);
 
-    delay(100);
+    delay(10);
 }
