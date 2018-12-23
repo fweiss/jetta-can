@@ -109,9 +109,9 @@ void loop()
 
     writeAbs();
 
-    lightframe.setFoglamp(false);
-    lightframe.sendFrame(CAN);
-//    app.send(lightframe);
+    lightframe.setFoglamp(true);
+//    lightframe.sendFrame(CAN);
+    app.send(lightframe);
 
     engine.setFuelCapNotTight(false);
 //    engine.send(CAN);

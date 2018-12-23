@@ -2,10 +2,14 @@
 
 #include "mcp_can.h"
 
-class Lights470Frame {
+#include "BaseFrame.h"
+
+class Lights470Frame : public BaseFrame {
 public:
     Lights470Frame();
     virtual ~Lights470Frame();
+
+    unsigned char* getBytes() override;
 
     const unsigned long id = 0x470;
     const byte ext = 0;
