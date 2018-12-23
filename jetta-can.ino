@@ -4,14 +4,18 @@
 #include "mcp_can.h"
 //#include "BasicFrame.h"
 #include "AirbagFrame.h"
+
 #include "ECU280Frame.h"
 #include "Lights470Frame.h"
+#include "Airbag050Frame.h"
 
 MCP_CAN CAN(9);
 
-AirbagFrame airbag;
+//AirbagFrame airbag;
+
 ECU280Frame ecu280Frame;
 Lights470Frame lightframe;
+Airbag050Frame airbagFrame;
 
 const unsigned long speedCanId = 0x04;
 const unsigned long rpmCanId = 0x05;
@@ -159,7 +163,9 @@ void loop()
     lightframe.sendFrame(CAN);
 
     writeEngine();
-    airbag.send(CAN);
+
+//    airbag.send(CAN);
+    airbagFrame.send(CAN);
 
     delay(10);
 }

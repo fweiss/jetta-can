@@ -12,7 +12,7 @@ BasicFrame::~BasicFrame() {
 byte BasicFrame::sendMessage(MCP_CAN can, byte message[8]) {
     byte status;
     byte ext = 0;
-    status = can.sendMsgBuf(id, ext, sizeof(message), message);
+    status = can.sendMsgBuf(id, ext, 4, message);
     if (status == CAN_OK) {
         Serial.print("send ");
         Serial.print(name);
