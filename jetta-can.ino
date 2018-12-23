@@ -6,12 +6,14 @@
 #include "ECU280Frame.h"
 #include "Lights470Frame.h"
 #include "Airbag050Frame.h"
+#include "VehicleSpeed5A0Frame.h"
 
 MCP_CAN CAN(9);
 
 ECU280Frame ecu280Frame;
 Lights470Frame lightframe;
 Airbag050Frame airbagFrame;
+VehicleSpeed5A0Frame vehicleSpeed;
 
 const unsigned long speedCanId = 0x04;
 const unsigned long rpmCanId = 0x05;
@@ -49,36 +51,36 @@ void traceReceive() {
 
 unsigned short distance_counter = 40;
 
-void writeSpeed(byte kmph) {
-//    byte message[8] = { 0,0,0,0,0,0,0,0 };
-    byte speedL = 0;
-    byte speedH = 50;
-
-    const byte abs = B0000001;
-    const byte offroad = B00000010;
-    const byte tirePressure = B00001000;
-    const byte handbrake = B00000100; // not implemented
-    byte drive_mode = 0;
-
-    distance_counter += 40;
-    byte message[8] = { 0xFF, speedL, speedH, drive_mode, 0x00, lo8(distance_counter), hi8(distance_counter), 0xad };
-
-    message[1] = 100;
-
-    byte status;
-//    unsigned long id = 0x320; // motor speed?
-    unsigned long id = 0x5A0;
-    byte ext = 0;
-
-    status = CAN.sendMsgBuf(id, ext, sizeof(message), message);
-    if (status == CAN_OK) {
-        Serial.println("send speed OK");
-    } else {
-        Serial.print("send error: ");
-        Serial.println(status);
-    }
-
-}
+//void writeSpeed(byte kmph) {
+////    byte message[8] = { 0,0,0,0,0,0,0,0 };
+//    byte speedL = 0;
+//    byte speedH = 50;
+//
+//    const byte abs = B0000001;
+//    const byte offroad = B00000010;
+//    const byte tirePressure = B00001000;
+//    const byte handbrake = B00000100; // not implemented
+//    byte drive_mode = 0;
+//
+//    distance_counter += 40;
+//    byte message[8] = { 0xFF, speedL, speedH, drive_mode, 0x00, lo8(distance_counter), hi8(distance_counter), 0xad };
+//
+//    message[1] = 100;
+//
+//    byte status;
+////    unsigned long id = 0x320; // motor speed?
+//    unsigned long id = 0x5A0;
+//    byte ext = 0;
+//
+//    status = CAN.sendMsgBuf(id, ext, sizeof(message), message);
+//    if (status == CAN_OK) {
+//        Serial.println("send speed OK");
+//    } else {
+//        Serial.print("send error: ");
+//        Serial.println(status);
+//    }
+//
+//}
 
 void writeEngine() {
     const byte engineControlMalfunction = B00000100;
@@ -151,8 +153,10 @@ void loop()
     ecu280Frame.setRpm(2200);
     ecu280Frame.send(CAN);
 
+//    writeSpeed(45);
+    vehicleSpeed.setSpeedMph(20.0);
+    vehicleSpeed.send(CAN);
 
-    writeSpeed(45);
     writeAbs();
 
     lightframe.setFoglamp(true);
