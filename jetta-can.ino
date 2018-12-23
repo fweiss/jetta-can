@@ -17,8 +17,8 @@ Airbag050Frame airbagFrame;
 VehicleSpeed5A0Frame vehicleSpeed;
 Engine480Frame engine;
 
-const unsigned long speedCanId = 0x04;
-const unsigned long rpmCanId = 0x05;
+//const unsigned long speedCanId = 0x04;
+//const unsigned long rpmCanId = 0x05;
 
 void traceReceive() {
     unsigned long id;
@@ -47,33 +47,7 @@ void traceReceive() {
     Serial.println();
 }
 
-
-#define lo8(x) (x & 0xFF)
-#define hi8(x) (x >> 8)
-
-unsigned short distance_counter = 40;
-
-//void writeEngine() {
-//    const byte engineControlMalfunction = B00000100;
-////    const byte waterTemp = B00010000;
-//    byte engine = 0;
-//
-//    const byte fuelCapNotTight = B00010000;
-//    byte dieselPreheat = 0;
-//
-//    byte message[8] = { 0, engine, 0, 0, 0, dieselPreheat, 0, 0 };
-//
-//    byte status;
-//    unsigned long id = 0x480;
-//    byte ext = 0;
-//    status = CAN.sendMsgBuf(id, ext, sizeof(message), message);
-//    if (status == CAN_OK) {
-//        Serial.println("send OK");
-//    } else {
-//        Serial.print("send error: ");
-//        Serial.println(status);
-//    }
-//}
+//unsigned short distance_counter = 40;
 
 void writeAbs() {
     byte speedL = 50;
@@ -132,7 +106,6 @@ void loop()
     lightframe.setFoglamp(false);
     lightframe.sendFrame(CAN);
 
-//    writeEngine();
     engine.setFuelCapNotTight(false);
     engine.send(CAN);
 
