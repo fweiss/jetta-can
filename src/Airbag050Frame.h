@@ -8,6 +8,8 @@ public:
     virtual ~Airbag050Frame();
 
     unsigned char* getBytes() override;
+
+    void setSeatbeltWarning(bool onOff) { frame.seatbeltWarning = onOff; }
 private:
     struct {
         // byte 0

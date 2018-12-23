@@ -11,8 +11,6 @@
 
 MCP_CAN CAN(9);
 
-//AirbagFrame airbag;
-
 ECU280Frame ecu280Frame;
 Lights470Frame lightframe;
 Airbag050Frame airbagFrame;
@@ -164,7 +162,7 @@ void loop()
 
     writeEngine();
 
-//    airbag.send(CAN);
+    airbagFrame.setSeatbeltWarning(false);
     airbagFrame.send(CAN);
 
     delay(10);
