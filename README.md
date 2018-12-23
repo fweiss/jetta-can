@@ -129,6 +129,7 @@ Here's some info on a C++ way to have portable bit fields: https://stackoverflow
 #### General decoding
 https://hackaday.io/project/6288/instructions
 https://christian-rossow.de/publications/vatican-ches2016.pdf
+https://sites.google.com/view/dashboard-control/can-bus-hardware
 
 #### Hacking 0x280: 
 http://ev-a2.blogspot.com/2013/06/can-bus-analysis-started.html

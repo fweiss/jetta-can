@@ -7,6 +7,7 @@
 #include "Lights470Frame.h"
 #include "Airbag050Frame.h"
 #include "VehicleSpeed5A0Frame.h"
+#include "Engine480Frame.h"
 
 MCP_CAN CAN(9);
 
@@ -14,6 +15,7 @@ ECU280Frame ecu280Frame;
 Lights470Frame lightframe;
 Airbag050Frame airbagFrame;
 VehicleSpeed5A0Frame vehicleSpeed;
+Engine480Frame engine;
 
 const unsigned long speedCanId = 0x04;
 const unsigned long rpmCanId = 0x05;
@@ -51,27 +53,27 @@ void traceReceive() {
 
 unsigned short distance_counter = 40;
 
-void writeEngine() {
-    const byte engineControlMalfunction = B00000100;
-//    const byte waterTemp = B00010000;
-    byte engine = 0;
-
-    const byte fuelCapNotTight = B00010000;
-    byte dieselPreheat = 0;
-
-    byte message[8] = { 0, engine, 0, 0, 0, dieselPreheat, 0, 0 };
-
-    byte status;
-    unsigned long id = 0x480;
-    byte ext = 0;
-    status = CAN.sendMsgBuf(id, ext, sizeof(message), message);
-    if (status == CAN_OK) {
-        Serial.println("send OK");
-    } else {
-        Serial.print("send error: ");
-        Serial.println(status);
-    }
-}
+//void writeEngine() {
+//    const byte engineControlMalfunction = B00000100;
+////    const byte waterTemp = B00010000;
+//    byte engine = 0;
+//
+//    const byte fuelCapNotTight = B00010000;
+//    byte dieselPreheat = 0;
+//
+//    byte message[8] = { 0, engine, 0, 0, 0, dieselPreheat, 0, 0 };
+//
+//    byte status;
+//    unsigned long id = 0x480;
+//    byte ext = 0;
+//    status = CAN.sendMsgBuf(id, ext, sizeof(message), message);
+//    if (status == CAN_OK) {
+//        Serial.println("send OK");
+//    } else {
+//        Serial.print("send error: ");
+//        Serial.println(status);
+//    }
+//}
 
 void writeAbs() {
     byte speedL = 50;
@@ -127,10 +129,12 @@ void loop()
 
     writeAbs();
 
-    lightframe.setFoglamp(true);
+    lightframe.setFoglamp(false);
     lightframe.sendFrame(CAN);
 
-    writeEngine();
+//    writeEngine();
+    engine.setFuelCapNotTight(false);
+    engine.send(CAN);
 
     airbagFrame.setSeatbeltWarning(false);
     airbagFrame.send(CAN);
