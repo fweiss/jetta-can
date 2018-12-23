@@ -95,21 +95,22 @@ void loop()
     }
 
     ecu280Frame.setRpm(3200);
-    app.send(ecu280Frame);
 
     vehicleSpeed.setSpeedMph(120.0);
-    app.send(vehicleSpeed);
 
     writeAbs();
 
     lightframe.setFoglamp(true);
-    app.send(lightframe);
 
     engine.setFuelCapNotTight(false);
-    app.send(engine);
 
     airbagFrame.setSeatbeltWarning(false);
+
     app.send(airbagFrame);
+    app.send(engine);
+    app.send(lightframe);
+    app.send(vehicleSpeed);
+    app.send(ecu280Frame);
 
     delay(10);
 }
