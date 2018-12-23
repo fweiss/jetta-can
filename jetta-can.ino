@@ -10,6 +10,7 @@
 #include "Airbag050Frame.h"
 #include "VehicleSpeed5A0Frame.h"
 #include "Engine480Frame.h"
+#include "ABS1A0Frame.h"
 
 MCP_CAN CAN(9);
 
@@ -20,6 +21,7 @@ Lights470Frame lightframe;
 Airbag050Frame airbagFrame;
 VehicleSpeed5A0Frame vehicleSpeed;
 Engine480Frame engine;
+ABS1A0Frame absFrame;
 
 void traceReceive() {
     unsigned long id;
@@ -48,23 +50,23 @@ void traceReceive() {
     Serial.println();
 }
 
-void writeAbs() {
-    byte speedL = 50;
-    byte speedH = 50;
-    byte message[8] = { 0x18, speedL, speedH, 0x00, 0xfe, 0xfe, 0x00, 0xff };
-    byte status;
-    unsigned long id = 0x1A0;
-    byte ext = 0;
-
-    status = CAN.sendMsgBuf(id, ext, sizeof(message), message);
-    if (status == CAN_OK) {
-        Serial.println("send OK");
-    } else {
-        Serial.print("send error: ");
-        Serial.println(status);
-    }
-
-}
+//void writeAbs() {
+//    byte speedL = 50;
+//    byte speedH = 50;
+//    byte message[8] = { 0x18, speedL, speedH, 0x00, 0xfe, 0xfe, 0x00, 0xff };
+//    byte status;
+//    unsigned long id = 0x1A0;
+//    byte ext = 0;
+//
+//    status = CAN.sendMsgBuf(id, ext, sizeof(message), message);
+//    if (status == CAN_OK) {
+//        Serial.println("send OK");
+//    } else {
+//        Serial.print("send error: ");
+//        Serial.println(status);
+//    }
+//
+//}
 
 void setup() {
     Serial.begin(115700);
@@ -98,9 +100,9 @@ void loop()
 
     vehicleSpeed.setSpeedMph(120.0);
 
-    writeAbs();
+//    writeAbs();
 
-    lightframe.setFoglamp(true);
+    lightframe.setFoglamp(false);
 
     engine.setFuelCapNotTight(false);
 
@@ -111,6 +113,7 @@ void loop()
     app.send(lightframe);
     app.send(vehicleSpeed);
     app.send(ecu280Frame);
+    app.send(absFrame);
 
     delay(10);
 }
