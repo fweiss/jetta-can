@@ -16,12 +16,14 @@ public:
     void setFoglamp(bool onOff);
     void setDoorAjar(unsigned char doorNumber);
     void setInstrumentBacklightBrightness(unsigned char brightness) { frame.instrumentBacklightBrightness = brightness; }
+    void setLowBatteryWarning(bool onOff) { frame.lowBatteryWarning = onOff; }
 private:
     struct {
         // byte 0
         unsigned char turnSignalLeft : 1;
         unsigned char turnSignalRight : 1;
-        unsigned char : 6;
+        unsigned char : 5;
+        unsigned char lowBatteryWarning : 1;
         // byte 1
         unsigned char doorAjar0 : 1; // implemented as or of the four door bits
         unsigned char doorAjar1 : 1;
