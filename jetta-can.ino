@@ -13,6 +13,7 @@
 #include "ABS1A0Frame.h"
 #include "DefaultFrame.h"
 #include "TraceFrame.h"
+#include "EngineDA0Frame.h"
 
 MCP_CAN CAN(9);
 
@@ -26,6 +27,7 @@ Engine480Frame engine;
 ABS1A0Frame absFrame;
 DefaultFrame defaultFrame;
 TraceFrame traceFrame;
+EngineDA0Frame engine2;
 
 void setup() {
     Serial.begin(115700);
@@ -39,6 +41,7 @@ void setup() {
     }
 
     Serial.println("completed setup");
+    app.send(engine2);
 }
 
 void loop()
