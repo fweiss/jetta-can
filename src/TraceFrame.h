@@ -1,13 +1,13 @@
 #pragma once
 
-#include <BaseFrame.h>
+#include "BaseFrame.h"
 
 class TraceFrame: public BaseFrame {
 public:
     TraceFrame();
     virtual ~TraceFrame();
 
-    virtual unsigned char* getBytes();
+    virtual const unsigned char* getBytes();
 
     void print();
 private:

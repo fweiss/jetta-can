@@ -1,4 +1,4 @@
-#include <DefaultFrame.h>
+#include "DefaultFrame.h"
 
 DefaultFrame::DefaultFrame() : BaseFrame(0x00, 0) {
     unsigned char* raw = getBytes();
@@ -15,7 +15,7 @@ DefaultFrame::DefaultFrame() : BaseFrame(0x00, 0) {
 DefaultFrame::~DefaultFrame() {
 }
 
-unsigned char* DefaultFrame::getBytes() {
+const unsigned char* DefaultFrame::getBytes() {
     return (unsigned char*)&frame;
 }
 

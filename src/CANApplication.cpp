@@ -1,6 +1,6 @@
+#include "CANApplication.h"
 
-#include <CANApplication.h>
-
+// fixme should be ref, not copy?
 CANApplication::CANApplication(MCP_CAN can) {
     this->can = can;
 }

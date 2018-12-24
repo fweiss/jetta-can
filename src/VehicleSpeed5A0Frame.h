@@ -1,6 +1,6 @@
 #pragma once
 
-#include <BaseFrame.h>
+#include "BaseFrame.h"
 
 class VehicleSpeed5A0Frame : public BaseFrame
 {
@@ -8,7 +8,7 @@ public:
     VehicleSpeed5A0Frame();
     virtual ~VehicleSpeed5A0Frame();
 
-    unsigned char* getBytes() override { return (unsigned char*)&frame; }
+    virtual const unsigned char* getBytes() override { return (unsigned char*)&frame; }
 
     void setSpeedMph(float mph);
     void setDistanceTraveled(unsigned long distance);

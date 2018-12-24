@@ -7,7 +7,7 @@ public:
     Airbag050Frame();
     virtual ~Airbag050Frame();
 
-    unsigned char* getBytes() override;
+    virtual const unsigned char* getBytes() override;
 
     void setSeatbeltWarning(bool onOff) { frame.seatbeltWarning = onOff; }
 private:

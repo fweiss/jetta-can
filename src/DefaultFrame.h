@@ -1,13 +1,13 @@
 #pragma once
 
-#include <BaseFrame.h>
+#include "BaseFrame.h"
 
 class DefaultFrame: public BaseFrame {
 public:
     DefaultFrame();
     virtual ~DefaultFrame();
 
-    virtual unsigned char* getBytes() override;
+    virtual const unsigned char* getBytes() override;
 private:
     struct {
         // byte 0

@@ -1,4 +1,4 @@
-#include <Airbag050Frame.h>
+#include "Airbag050Frame.h"
 
 Airbag050Frame::Airbag050Frame() : BaseFrame(0x050, 0) {
     // message length = 4
@@ -8,6 +8,6 @@ Airbag050Frame::Airbag050Frame() : BaseFrame(0x050, 0) {
 Airbag050Frame::~Airbag050Frame() {
 }
 
-unsigned char* Airbag050Frame::getBytes() {
+const unsigned char* Airbag050Frame::getBytes() {
     return (unsigned char*)&frame;
 }

@@ -7,7 +7,7 @@ public:
     ABS1A0Frame();
     virtual ~ABS1A0Frame();
 
-    virtual unsigned char* getBytes() override;
+    virtual const unsigned char* getBytes() override;
 private:
     struct {
         //byte 0
