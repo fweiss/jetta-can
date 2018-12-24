@@ -42,6 +42,8 @@ void setup() {
         Serial.println("CAN did not start");
     }
 
+    app.setup();
+
     Serial.println("completed setup");
 
     // cited in examples, but don't appear to do anything on the instrument cluster
@@ -79,6 +81,8 @@ void loop()
     app.send(ecu280Frame);
     app.send(absFrame);
 //    app.send(defaultFrame);
+
+    app.loop();
 
     delay(100);
 }

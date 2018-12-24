@@ -1,11 +1,17 @@
 #include "CANApplication.h"
 
 // fixme should be ref, not copy?
-CANApplication::CANApplication(MCP_CAN can) {
+CANApplication::CANApplication(MCP_CAN can) : slowTimer(1000){
     this->can = can;
 }
 
-CANApplication::~CANApplication() {
+void CANApplication::setup() {
+
+}
+void CANApplication::loop() {
+    if (slowTimer.event()) {
+        Serial.println("slow");
+    }
 }
 
 void CANApplication::send(BaseFrame& frame) {
@@ -21,6 +27,8 @@ void CANApplication::send(BaseFrame& frame) {
 }
 
 void CANApplication::receive(BaseFrame& frame) {
+    bool showTrace = false;
+
     unsigned long id;
     byte ext;
     byte rtr;
@@ -31,7 +39,7 @@ void CANApplication::receive(BaseFrame& frame) {
     byte rxTxStatus = can.readRxTxStatus();
     status = can.readMsgBufID(rxTxStatus, &id, &ext, &rtr, &length, buffer);
 
-    if (true || id == 0x62D) {
+    if (showTrace && id == 0x62D) {
         Serial.print("received id: ");
         Serial.print(id, HEX);
         Serial.print(" ext: ");
