@@ -29,7 +29,7 @@ private:
         unsigned char doorAjar1 : 1;
         unsigned char doorAjar2 : 1;
         unsigned char doorAjar3 : 1;
-        unsigned char trunklidAjar : 1; // trunk ajar light implemented?
+        unsigned char trunklidAjar : 1; // trunk ajar light not implemented or is it 0x20?
         unsigned char : 3;
         // byte 2
         unsigned char instrumentBacklightBrightness : 7; // B00000001=fade off

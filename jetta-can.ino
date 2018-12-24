@@ -57,7 +57,7 @@ void loop()
     lightframe.setInstrumentBacklightBrightness(127);
     lightframe.setFoglamp(false);
     lightframe.setHighbeam(false);
-    lightframe.setLowBatteryWarning(true);
+    lightframe.setLowBatteryWarning(false);
 //    lightframe.setDoorAjar(1);
 
     engine.setFuelCapNotTight(false);
