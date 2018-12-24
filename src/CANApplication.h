@@ -10,6 +10,7 @@ public:
     virtual ~CANApplication();
 
     void send(BaseFrame& frame);
+    void receive(BaseFrame& frame);
 private:
     MCP_CAN can;
 };

@@ -3,13 +3,19 @@
 Control the gauges and lights of a Jetta instrument cluster via CAN bus.
 
 ## Parts
-Using the following:
+Using the following hardware:
 
 - 2014 Jetta instrument cluster (used, Ebay)
 - Arduino UNO
 - Seeed Studio CAN bus shield
 - hookup wires and cables
 - AC-DC 12V PSU (Velleman)
+
+Using the following software:
+
+- Eclipse Photon
+- Sloeber
+- CAN bus shield library https://github.com/Seeed-Studio/CAN_BUS_Shield
 
 ## Connections
 Found a pretty good reference.
@@ -118,6 +124,9 @@ But does seem to have the CAN IDs
 https://www.snapon.com/Files/Diagnostics/UserManuals/VolkswagenAudiVehicleCommunicationSoftwareManual_EAZ0031B01D.pdf
 
 http://www.copperhilltechnologies.com/can-bus-guide-message-frame-format
+
+Some very detailed overview of particular vehicles:
+https://www.slideshare.net/soxxxcool/car-hacking
 
 ### Bitfields
 We can use bit fields, shift masks, B-literal masks.

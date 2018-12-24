@@ -56,4 +56,33 @@ inner CW
 - mirror
 - seatbelt
 - brake
-s
+
+## Emitted frames
+Frames that are emitted from the cluster
+
+### 320 instrument cluster
+typical
+1A 01 FF FF FF CX FF A9
+where X varies
+also change after the speedometer resets
+
+### 621 instrument cluster
+typical
+00 EF 5 FF 90 32 0 0
+
+### 62D
+typical
+D0 47 15 80 1F 0 29 80
+about one per second, but seems to com e in bursts
+some of the values change
+
+### 727 instrument cluster
+length 7
+4 3 1 0 2 0 0 key on
+1 1 4 0 6 0 0 key off
+2 3 5 0 6 0 0 key on cluster starting
+4 3 1 0 2 0 0 cluster ready
+
+
+
+
