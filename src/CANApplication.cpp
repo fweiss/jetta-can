@@ -31,7 +31,7 @@ void CANApplication::receive(BaseFrame& frame) {
     byte rxTxStatus = can.readRxTxStatus();
     status = can.readMsgBufID(rxTxStatus, &id, &ext, &rtr, &length, buffer);
 
-    if (id == 0x62D) {
+    if (true || id == 0x62D) {
         Serial.print("received id: ");
         Serial.print(id, HEX);
         Serial.print(" ext: ");

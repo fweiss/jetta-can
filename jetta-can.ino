@@ -27,33 +27,6 @@ ABS1A0Frame absFrame;
 DefaultFrame defaultFrame;
 TraceFrame traceFrame;
 
-//void traceReceive() {
-//    unsigned long id;
-//    byte ext;
-//    byte rtr;
-//    byte length;
-//    byte buffer[512];
-//    byte status;
-//
-//    byte rxTxStatus = CAN.readRxTxStatus();
-//    status = CAN.readMsgBufID(rxTxStatus, &id, &ext, &rtr, &length, buffer);
-//
-//    Serial.print("received id: ");
-//    Serial.print(id, HEX);
-//    Serial.print(" ext: ");
-//    Serial.print(ext, HEX);
-//    Serial.print(" rtr: ");
-//    Serial.print(rtr, HEX);
-//    Serial.print(" length: ");
-//    Serial.print(length);
-//    Serial.print(" data:");
-//    for (int i=0; i<length; i++) {
-//        Serial.print(" ");
-//        Serial.print(buffer[i], HEX);
-//    }
-//    Serial.println();
-//}
-
 void setup() {
     Serial.begin(115700);
     Serial.println("started setup");
@@ -72,17 +45,7 @@ void loop()
 {
     byte result = CAN.checkReceive();
     if (result == CAN_MSGAVAIL) {
-        unsigned char len = 0;
-        unsigned char buf[8];
-
         app.receive(traceFrame);
-//        traceFrame.print();
-
-//        CAN.readMsgBuf(&len, buf);
-//        Serial.print("rxtxstatus: ");
-//        Serial.println(rxTxStatus);
-
-//        traceReceive();
     }
 
     ecu280Frame.setRpm(3200);
