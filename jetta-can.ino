@@ -14,6 +14,7 @@
 #include "DefaultFrame.h"
 #include "TraceFrame.h"
 #include "EngineDA0Frame.h"
+#include "Immobilizer3D0Frame.h"
 
 MCP_CAN CAN(9);
 
@@ -28,6 +29,7 @@ ABS1A0Frame absFrame;
 DefaultFrame defaultFrame;
 TraceFrame traceFrame;
 EngineDA0Frame engine2;
+Immobilizer3D0Frame immobilizer;
 
 void setup() {
     Serial.begin(115700);
@@ -41,7 +43,10 @@ void setup() {
     }
 
     Serial.println("completed setup");
+
+    // cited in examples, but don't appear to do anything on the instrument cluster
     app.send(engine2);
+    app.send(immobilizer);
 }
 
 void loop()
