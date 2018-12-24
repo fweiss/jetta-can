@@ -17,6 +17,7 @@ public:
     void setHighbeam(bool onOff);
     void setFoglamp(bool onOff);
     void setDoorAjar(unsigned char doorNumber);
+    void setInstrumentBacklightBrightness(unsigned char brightness) { frame.instrumentBacklightBrightness = brightness; }
 private:
     struct {
         // byte 0
@@ -31,7 +32,8 @@ private:
         unsigned char trunklidAjar : 1; // trunk ajar light implemented?
         unsigned char : 3;
         // byte 2
-        unsigned char instrumentBacklight : 8; // B00000001=fade off
+        unsigned char instrumentBacklightBrightness : 7; // B00000001=fade off
+        unsigned char : 1;
         // byte 3
         unsigned char : 8;
         // byte 4

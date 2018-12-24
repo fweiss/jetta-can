@@ -54,6 +54,7 @@ void loop()
     vehicleSpeed.setAbsWarning(false);
     vehicleSpeed.setOffroadWarning(false);
 
+    lightframe.setInstrumentBacklightBrightness(127);
     lightframe.setFoglamp(false);
     lightframe.setHighbeam(false);
 //    lightframe.setDoorAjar(1);
