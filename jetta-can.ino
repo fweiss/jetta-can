@@ -3,6 +3,8 @@
 #include <SPI.h>
 #include <mcp_can.h>
 
+#include "LoopTimer.h"
+
 #include "CANApplication.h"
 
 #include "ECU280Frame.h"
@@ -15,6 +17,7 @@
 #include "TraceFrame.h"
 #include "EngineDA0Frame.h"
 #include "Immobilizer3D0Frame.h"
+#include "MotorSpeed320Frmae.h"
 
 MCP_CAN CAN(9);
 
@@ -30,6 +33,13 @@ DefaultFrame defaultFrame;
 TraceFrame traceFrame;
 EngineDA0Frame engine2;
 Immobilizer3D0Frame immobilizer;
+MotorSpeed320Frame motorSpeed;
+
+LoopTimer timer1Hz(1000);
+LoopTimer timer10Hz(100);
+LoopTimer timer20Hz(50);
+LoopTimer timer50Hz(20);
+LoopTimer timer100Hz(10);
 
 void setup() {
     Serial.begin(115700);
@@ -45,10 +55,6 @@ void setup() {
     app.setup();
 
     Serial.println("completed setup");
-
-    // cited in examples, but don't appear to do anything on the instrument cluster
-    app.send(engine2);
-    app.send(immobilizer);
 }
 
 void loop()
@@ -60,7 +66,11 @@ void loop()
 
     ecu280Frame.setRpm(3200);
 
-    vehicleSpeed.setSpeedMph(120.0);
+    float speed = 20.0;
+    vehicleSpeed.setSpeedMph(speed);
+    absFrame.setSpeed(speed * 0.62 * 1.4285 * 256);
+    motorSpeed.setSpeed(speed * 0.62 * 1.4285 * 256);
+
     vehicleSpeed.setAbsWarning(false);
     vehicleSpeed.setOffroadWarning(false);
 
@@ -74,15 +84,30 @@ void loop()
 
     airbagFrame.setSeatbeltWarning(false);
 
-    app.send(airbagFrame);
-    app.send(engine);
-    app.send(lightframe);
-    app.send(vehicleSpeed);
-    app.send(ecu280Frame);
-    app.send(absFrame);
+    // cited in examples, but don't appear to do anything on the instrument cluster
+//    app.send(immobilizer);
+
+//    app.send(airbagFrame);
+//    app.send(engine);
+//    app.send(lightframe);
+
+    if (timer100Hz.event()) { // 1A0, 4A0
+        app.send(absFrame);
+    }
+    if (timer50Hz.event()) { // 280
+//        app.send(ecu280Frame);
+    }
+    if (timer10Hz.event()) { // 35B, 5A0, 621, 727
+        app.send(motorSpeed);
+        app.send(engine2);
+        app.send(vehicleSpeed);
+    }
+    if (timer1Hz.event()) {
+    }
+
 //    app.send(defaultFrame);
 
     app.loop();
 
-    delay(100);
+    delay(20);
 }

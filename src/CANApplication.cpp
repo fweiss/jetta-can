@@ -10,7 +10,7 @@ void CANApplication::setup() {
 }
 void CANApplication::loop() {
     if (slowTimer.event()) {
-        Serial.println("slow");
+//        Serial.println("slow");
     }
 }
 
@@ -27,7 +27,7 @@ void CANApplication::send(BaseFrame& frame) {
 }
 
 void CANApplication::receive(BaseFrame& frame) {
-    bool showTrace = false;
+    bool showTrace = true;
 
     unsigned long id;
     byte ext;
@@ -39,7 +39,7 @@ void CANApplication::receive(BaseFrame& frame) {
     byte rxTxStatus = can.readRxTxStatus();
     status = can.readMsgBufID(rxTxStatus, &id, &ext, &rtr, &length, buffer);
 
-    if (showTrace && id == 0x62D) {
+    if (showTrace && id == 0x320) {
         Serial.print("received id: ");
         Serial.print(id, HEX);
         Serial.print(" ext: ");

@@ -1,17 +1,19 @@
 #pragma once
 
-#include <BaseFrame.h>
+#include "BaseFrame.h"
 
-class ABS1A0Frame: public BaseFrame {
+class MotorSpeed320Frame: public BaseFrame
+{
 public:
-    ABS1A0Frame();
-    virtual ~ABS1A0Frame();
+    MotorSpeed320Frame();
+    virtual ~MotorSpeed320Frame() { }
 
-    virtual const unsigned char* getBytes() override;
-    void setSpeed(unsigned short speed) { frame.speed = speed; }
+    virtual unsigned char* getBytes() { return (unsigned char*)&frame; }
+
+    void setSpeed(float speed) { frame.speed = speed * 100; }
 private:
     struct {
-        //byte 0
+        // byte 0
         unsigned char : 8;
         // byte 1 and 2
         unsigned short speed : 16;

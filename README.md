@@ -7,7 +7,7 @@ Using the following hardware:
 
 - 2014 Jetta instrument cluster (used, Ebay)
 - Arduino UNO
-- Seeed Studio CAN bus shield
+- Seeed Studio CAN bus shield v2
 - hookup wires and cables
 - AC-DC 12V PSU (Velleman)
 
@@ -114,7 +114,7 @@ https://en.wikipedia.org/wiki/OBD-II_PIDs
 
 Dashboard symbols
 https://www.vwserviceandparts.com/service/volkswagen-dashboard-indicator-lights/
-(different than the 2013)sss
+(different than the 2014)
 
 A good resource including a sample ino file. Got a lot of the data details here.
 https://hackaday.io/project/6288-volkswagen-can-bus-gaming
