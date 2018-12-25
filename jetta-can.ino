@@ -36,6 +36,7 @@ Immobilizer3D0Frame immobilizer;
 MotorSpeed320Frame motorSpeed;
 
 LoopTimer timer1Hz(1000);
+LoopTimer timer5Hz(200);
 LoopTimer timer10Hz(100);
 LoopTimer timer20Hz(50);
 LoopTimer timer50Hz(20);
@@ -64,7 +65,7 @@ void loop()
         app.receive(traceFrame);
     }
 
-    ecu280Frame.setRpm(3200);
+    ecu280Frame.setRpm(800);
 
     float speed = 20.0;
     vehicleSpeed.setSpeedMph(speed);
@@ -74,7 +75,7 @@ void loop()
     vehicleSpeed.setAbsWarning(false);
     vehicleSpeed.setOffroadWarning(false);
 
-    lightframe.setInstrumentBacklightBrightness(127);
+//    lightframe.setInstrumentBacklightBrightness(127);
     lightframe.setFoglamp(false);
     lightframe.setHighbeam(false);
     lightframe.setLowBatteryWarning(false);
@@ -85,22 +86,25 @@ void loop()
     airbagFrame.setSeatbeltWarning(false);
 
     // cited in examples, but don't appear to do anything on the instrument cluster
-//    app.send(immobilizer);
 
-//    app.send(airbagFrame);
-//    app.send(engine);
-//    app.send(lightframe);
 
     if (timer100Hz.event()) { // 1A0, 4A0
-        app.send(absFrame);
     }
     if (timer50Hz.event()) { // 280
-//        app.send(ecu280Frame);
+        app.send(immobilizer);
+        app.send(engine2);
+
+        app.send(motorSpeed);
+        app.send(ecu280Frame);
+        app.send(vehicleSpeed);
+        app.send(absFrame);
+        app.send(airbagFrame);
     }
     if (timer10Hz.event()) { // 35B, 5A0, 621, 727
-        app.send(motorSpeed);
-        app.send(engine2);
-        app.send(vehicleSpeed);
+    }
+    if (timer5Hz.event()) {
+//        app.send(lightframe);
+//        app.send(engine);
     }
     if (timer1Hz.event()) {
     }
@@ -109,5 +113,5 @@ void loop()
 
     app.loop();
 
-    delay(20);
+    delay(1);
 }

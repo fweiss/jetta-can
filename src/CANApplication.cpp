@@ -15,7 +15,7 @@ void CANApplication::loop() {
 }
 
 void CANApplication::send(BaseFrame& frame) {
-    byte status = can.sendMsgBuf(frame.id, frame.ext, 8, frame.getBytes());
+    byte status = can.sendMsgBuf(frame.id, frame.ext, 8, frame.getBytes(), true);
     if (status == CAN_OK) {
 //        Serial.println("send OK");
     } else {
@@ -27,7 +27,7 @@ void CANApplication::send(BaseFrame& frame) {
 }
 
 void CANApplication::receive(BaseFrame& frame) {
-    bool showTrace = true;
+    bool showTrace = false;
 
     unsigned long id;
     byte ext;
