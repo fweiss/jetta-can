@@ -1,5 +1,7 @@
 #include "CANApplication.h"
 
+#include <Arduino.h>
+
 // fixme should be ref, not copy?
 CANApplication::CANApplication(MCP_CAN can) : slowTimer(1000){
     this->can = can;
@@ -15,6 +17,8 @@ void CANApplication::loop() {
 }
 
 void CANApplication::send(BaseFrame& frame) {
+    printSendTrace(frame.id);
+
     byte status = can.sendMsgBuf(frame.id, frame.ext, 8, frame.getBytes(), true);
     if (status == CAN_OK) {
 //        Serial.println("send OK");
@@ -56,3 +60,10 @@ void CANApplication::receive(BaseFrame& frame) {
         Serial.println();
     }
 }
+
+void CANApplication::printSendTrace(unsigned long id) {
+    Serial.print(millis());
+    Serial.print(": ");
+    Serial.println(id, HEX);
+}
+

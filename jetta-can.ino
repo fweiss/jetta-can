@@ -91,14 +91,14 @@ void loop()
     if (timer100Hz.event()) { // 1A0, 4A0
     }
     if (timer50Hz.event()) { // 280
-        app.send(immobilizer);
+//        app.send(immobilizer);
         app.send(engine2);
 
-        app.send(motorSpeed);
-        app.send(ecu280Frame);
+//        app.send(motorSpeed);
+//        app.send(ecu280Frame);
         app.send(vehicleSpeed);
         app.send(absFrame);
-        app.send(airbagFrame);
+//        app.send(airbagFrame);
     }
     if (timer10Hz.event()) { // 35B, 5A0, 621, 727
     }
