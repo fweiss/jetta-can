@@ -103,7 +103,7 @@ environment/project/io.sloeber.core.toolChain.release.1364509751.1977817169/A.CO
 environment/project/io.sloeber.core.toolChain.release.1364509751.1977817169/A.COMPILER.CPP.CMD/value=avr-g++
 environment/project/io.sloeber.core.toolChain.release.1364509751.1977817169/A.COMPILER.CPP.EXTRA_FLAGS/delimiter=\:
 environment/project/io.sloeber.core.toolChain.release.1364509751.1977817169/A.COMPILER.CPP.EXTRA_FLAGS/operation=replace
-environment/project/io.sloeber.core.toolChain.release.1364509751.1977817169/A.COMPILER.CPP.EXTRA_FLAGS/value=
+environment/project/io.sloeber.core.toolChain.release.1364509751.1977817169/A.COMPILER.CPP.EXTRA_FLAGS/value=-save-temps
 environment/project/io.sloeber.core.toolChain.release.1364509751.1977817169/A.COMPILER.CPP.FLAGS/delimiter=\:
 environment/project/io.sloeber.core.toolChain.release.1364509751.1977817169/A.COMPILER.CPP.FLAGS/operation=replace
 environment/project/io.sloeber.core.toolChain.release.1364509751.1977817169/A.COMPILER.CPP.FLAGS/value=-c -g -Os ${A.COMPILER.WARNING_FLAGS} -std\=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -MMD -flto
@@ -1044,7 +1044,7 @@ environment/project/io.sloeber.core.toolChain.release.1364509751/JANTJE.COM_PORT
 environment/project/io.sloeber.core.toolChain.release.1364509751/JANTJE.COM_PORT/value=/dev/cu.usbmodem1461
 environment/project/io.sloeber.core.toolChain.release.1364509751/JANTJE.ECLIPSE_LOCATION/delimiter=\:
 environment/project/io.sloeber.core.toolChain.release.1364509751/JANTJE.ECLIPSE_LOCATION/operation=replace
-environment/project/io.sloeber.core.toolChain.release.1364509751/JANTJE.ECLIPSE_LOCATION/value=${eclipse_home}//////////////////
+environment/project/io.sloeber.core.toolChain.release.1364509751/JANTJE.ECLIPSE_LOCATION/value=${eclipse_home}//////////////////////////
 environment/project/io.sloeber.core.toolChain.release.1364509751/JANTJE.EXTRA.ALL/delimiter=\:
 environment/project/io.sloeber.core.toolChain.release.1364509751/JANTJE.EXTRA.ALL/operation=replace
 environment/project/io.sloeber.core.toolChain.release.1364509751/JANTJE.EXTRA.ALL/value=

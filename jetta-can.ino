@@ -87,6 +87,7 @@ void loop()
 
     // cited in examples, but don't appear to do anything on the instrument cluster
 
+// minimal vehicle speed PGNs: engine2, vehiclespeed, absframe
 
     if (timer100Hz.event()) { // 1A0, 4A0
     }
@@ -95,7 +96,7 @@ void loop()
         app.send(engine2);
 
 //        app.send(motorSpeed);
-//        app.send(ecu280Frame);
+        app.send(ecu280Frame);
         app.send(vehicleSpeed);
         app.send(absFrame);
 //        app.send(airbagFrame);
