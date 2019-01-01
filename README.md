@@ -24,7 +24,7 @@ Found a pretty good reference.
 - 28 CANH
 - 29 CANL
 - 31 +12V ignition (15)
-- 30 +12V battery (30)
+- 32 +12V battery (30)
 
 ### Quick connect
 Until proper wiring harness:
