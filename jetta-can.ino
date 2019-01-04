@@ -43,7 +43,7 @@ LoopTimer timer50Hz(20);
 LoopTimer timer100Hz(10);
 
 void setup() {
-    Serial.begin(115700);
+    Serial.begin(9600);
     Serial.println("started setup");
 
     byte result = CAN.begin(CAN_500KBPS);
@@ -96,7 +96,7 @@ void loop()
         app.send(engine2);
 
 //        app.send(motorSpeed);
-        app.send(ecu280Frame);
+//        app.send(ecu280Frame);
         app.send(vehicleSpeed);
         app.send(absFrame);
 //        app.send(airbagFrame);

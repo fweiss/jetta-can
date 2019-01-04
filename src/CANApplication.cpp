@@ -17,7 +17,7 @@ void CANApplication::loop() {
 }
 
 void CANApplication::send(BaseFrame& frame) {
-    printSendTrace(frame.id);
+//    printSendTrace(frame.id);
 
     byte status = can.sendMsgBuf(frame.id, frame.ext, 8, frame.getBytes(), true);
     if (status == CAN_OK) {

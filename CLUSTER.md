@@ -69,10 +69,12 @@ also change after the speedometer resets
 ### 621 instrument cluster
 typical
 00 EF 5 FF 90 32 0 0
+00 00 80 FF 90 7F 17 00
 
 ### 62D
 typical
-D0 47 15 80 1F 0 29 80
+D0 47 15 80 1F 00 29 80
+FE 4F 00 80 8D 00 FE BF
 about one per second, but seems to com e in bursts
 some of the values change
 
@@ -82,6 +84,11 @@ length 7
 1 1 4 0 6 0 0 key off
 2 3 5 0 6 0 0 key on cluster starting
 4 3 1 0 2 0 0 cluster ready
+
+### 420
+95 FF FF 00 08 7F FF 84 key on
+91 FF FF 00 08 3A FF 80 key off
+and some intermediate after turning on
 
 ## Connector pinouts
 Source: http://www.polo6rfreunde.de/index.php/Thread/9562-Pinbelegung-Tacho-Stecker/
@@ -122,5 +129,15 @@ Verfied pins marked with asterisk.
 | 30 | nicht belegt
 | 31* | Spannungsversorgung Kl. 15
 | 32* | Spannungsversorgung Kl. 30
+
+## Fluttering speedometer
+Trying to get the speedometer to hold a stady speed.
+
+
+
+- PGN 5A0+1A0 (either of them), but goes to zero after ~5 sec
+- PGN 5A0+1A0+DA0, steady for a few seconds at a time, flutters, goes to zero momentarily
+- without DA0, goes to zero after ~5 sec
+- moving 5A0 to 1 sec interval, smaller twiitches, but eventully zero
 
 
