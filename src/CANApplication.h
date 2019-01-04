@@ -7,7 +7,7 @@
 
 class CANApplication {
 public:
-    CANApplication(MCP_CAN can);
+    CANApplication(MCP_CAN& can);
     virtual ~CANApplication() { }
 
     void setup();

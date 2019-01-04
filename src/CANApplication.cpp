@@ -3,7 +3,7 @@
 #include <Arduino.h>
 
 // fixme should be ref, not copy?
-CANApplication::CANApplication(MCP_CAN can) : slowTimer(1000){
+CANApplication::CANApplication(MCP_CAN& can) : slowTimer(1000){
     this->can = can;
 }
 
