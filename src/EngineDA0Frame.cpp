@@ -10,6 +10,3 @@ EngineDA0Frame::EngineDA0Frame() : BaseFrame(0xda0, 0, &frame) {
 //    raw[4] = 254;
 //    raw[5] = 254;
 }
-
-EngineDA0Frame::~EngineDA0Frame() {
-}

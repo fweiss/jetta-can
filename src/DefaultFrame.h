@@ -5,7 +5,6 @@
 class DefaultFrame: public BaseFrame {
 public:
     DefaultFrame();
-    virtual ~DefaultFrame();
 
 private:
     struct {

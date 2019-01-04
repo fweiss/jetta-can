@@ -11,6 +11,3 @@ DefaultFrame::DefaultFrame() : BaseFrame(0x00, 0, &frame) {
 //    raw[6] = 0xff;
 //    raw[7] = 0xff;
 }
-
-DefaultFrame::~DefaultFrame() {
-}

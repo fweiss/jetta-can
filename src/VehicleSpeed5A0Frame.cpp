@@ -4,9 +4,6 @@ VehicleSpeed5A0Frame::VehicleSpeed5A0Frame() : BaseFrame(0x5a0, 0, &frame) {
     unsigned char* raw = getBytes();
 }
 
-VehicleSpeed5A0Frame::~VehicleSpeed5A0Frame() {
-}
-
 void VehicleSpeed5A0Frame::setSpeedMph(float mph) {
     // some empirical fiddling, but the guage may not be calibrated
     // kmh * 256 does seem to work

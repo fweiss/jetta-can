@@ -5,7 +5,6 @@
 class EngineDA0Frame: public BaseFrame {
 public:
     EngineDA0Frame();
-    virtual ~EngineDA0Frame();
 
 private:
     struct {

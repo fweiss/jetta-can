@@ -5,7 +5,6 @@
 class ECU280Frame : public BaseFrame {
 public:
     ECU280Frame();
-    virtual ~ECU280Frame();
 
     void setRpm(unsigned short rpm);
 private:

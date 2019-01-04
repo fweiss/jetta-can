@@ -6,7 +6,6 @@ class VehicleSpeed5A0Frame : public BaseFrame
 {
 public:
     VehicleSpeed5A0Frame();
-    virtual ~VehicleSpeed5A0Frame();
 
     void setSpeedMph(float mph);
     void setDistanceTraveled(unsigned long distance);

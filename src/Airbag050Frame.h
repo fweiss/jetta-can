@@ -5,7 +5,6 @@
 class Airbag050Frame : public BaseFrame {
 public:
     Airbag050Frame();
-    virtual ~Airbag050Frame();
 
     void setSeatbeltWarning(bool onOff) { frame.seatbeltWarning = onOff; }
 private:

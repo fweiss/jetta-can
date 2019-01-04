@@ -5,7 +5,6 @@
 class Lights470Frame : public BaseFrame {
 public:
     Lights470Frame();
-    virtual ~Lights470Frame();
 
     const unsigned long id = 0x470;
     const unsigned char ext = 0;

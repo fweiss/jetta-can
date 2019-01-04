@@ -5,7 +5,6 @@
 class Immobilizer3D0Frame: public BaseFrame {
 public:
     Immobilizer3D0Frame();
-    virtual ~Immobilizer3D0Frame() { }
 
 private:
     struct {

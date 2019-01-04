@@ -5,7 +5,6 @@
 class Engine480Frame : public BaseFrame {
 public:
     Engine480Frame();
-    virtual ~Engine480Frame();
 
     void setFuelCapNotTight(bool onOff) { frame.fuelCapNotTight = onOff; }
 private:

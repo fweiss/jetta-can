@@ -6,7 +6,6 @@ class MotorSpeed320Frame: public BaseFrame
 {
 public:
     MotorSpeed320Frame();
-    virtual ~MotorSpeed320Frame() { }
 
     void setSpeed(float speed) { frame.speed = speed * 100; }
 private:

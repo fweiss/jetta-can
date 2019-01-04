@@ -5,7 +5,6 @@
 class ABS1A0Frame: public BaseFrame {
 public:
     ABS1A0Frame();
-    virtual ~ABS1A0Frame();
 
     void setSpeed(unsigned short speed) { frame.speed = speed; }
 private:

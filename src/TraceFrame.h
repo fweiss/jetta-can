@@ -5,7 +5,6 @@
 class TraceFrame: public BaseFrame {
 public:
     TraceFrame();
-    virtual ~TraceFrame();
 
     void print();
 private:
