@@ -8,7 +8,7 @@ public:
     VehicleSpeed5A0Frame();
     virtual ~VehicleSpeed5A0Frame();
 
-    virtual const unsigned char* getBytes() override { return (unsigned char*)&frame; }
+//    virtual const unsigned char* getBytes() override { return (unsigned char*)&frame; }
 
     void setSpeedMph(float mph);
     void setDistanceTraveled(unsigned long distance);

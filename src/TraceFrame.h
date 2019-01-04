@@ -7,7 +7,7 @@ public:
     TraceFrame();
     virtual ~TraceFrame();
 
-    virtual const unsigned char* getBytes();
+//    virtual const unsigned char* getBytes();
 
     void print();
 private:

@@ -6,7 +6,7 @@ ABS1A0Frame::ABS1A0Frame() : BaseFrame(0x1a0, 0, &frame) {
 ABS1A0Frame::~ABS1A0Frame() {
 }
 
-const unsigned char* ABS1A0Frame::getBytes() {
-    return (unsigned char*)&frame;
-}
+//const unsigned char* ABS1A0Frame::getBytes() {
+//    return (unsigned char*)&frame;
+//}
 

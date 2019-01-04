@@ -1,6 +1,6 @@
 #include "EngineDA0Frame.h"
 
-EngineDA0Frame::EngineDA0Frame() : BaseFrame(0xda0, 0) {
+EngineDA0Frame::EngineDA0Frame() : BaseFrame(0xda0, 0, &frame) {
     // supposably engine on and ESP enabled
     unsigned char* raw = getBytes();
     raw[0] = 0x01;

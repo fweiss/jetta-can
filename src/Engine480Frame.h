@@ -7,7 +7,7 @@ public:
     Engine480Frame();
     virtual ~Engine480Frame();
 
-    virtual const unsigned char* getBytes() override;
+//    virtual const unsigned char* getBytes() override;
 
     void setFuelCapNotTight(bool onOff) { frame.fuelCapNotTight = onOff; }
 private:

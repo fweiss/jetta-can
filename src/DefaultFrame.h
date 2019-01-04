@@ -7,7 +7,7 @@ public:
     DefaultFrame();
     virtual ~DefaultFrame();
 
-    virtual const unsigned char* getBytes() override;
+//    virtual const unsigned char* getBytes() override;
 private:
     struct {
         // byte 0

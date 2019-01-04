@@ -7,5 +7,5 @@
 
 #include <MotorSpeed320Frmae.h>
 
-MotorSpeed320Frame::MotorSpeed320Frame() : BaseFrame(0x320, 0) {
+MotorSpeed320Frame::MotorSpeed320Frame() : BaseFrame(0x320, 0, &frame) {
 }
