@@ -6,7 +6,3 @@ Airbag050Frame::Airbag050Frame() : BaseFrame(0x050, 0, &frame) {
 
 Airbag050Frame::~Airbag050Frame() {
 }
-
-//const unsigned char* Airbag050Frame::getBytes() {
-//    return (unsigned char*)&frame;
-//}

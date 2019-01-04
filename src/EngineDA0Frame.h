@@ -7,7 +7,6 @@ public:
     EngineDA0Frame();
     virtual ~EngineDA0Frame();
 
-//    virtual unsigned char* getBytes() { return (unsigned char*)&frame; }
 private:
     struct {
         // byte 0

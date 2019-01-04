@@ -7,7 +7,6 @@ public:
     ABS1A0Frame();
     virtual ~ABS1A0Frame();
 
-//    virtual const unsigned char* getBytes() override;
     void setSpeed(unsigned short speed) { frame.speed = speed; }
 private:
     struct {

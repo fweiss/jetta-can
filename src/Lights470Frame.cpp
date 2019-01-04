@@ -6,10 +6,6 @@ Lights470Frame::Lights470Frame() : BaseFrame(0x470, 0, &frame) {
 Lights470Frame::~Lights470Frame() {
 }
 
-//const unsigned char* Lights470Frame::getBytes() {
-//    return (unsigned char*)&frame;
-//}
-
 void Lights470Frame::setHighbeam(bool onOff) {
     frame.highbeam = onOff;
 }

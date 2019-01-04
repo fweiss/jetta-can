@@ -7,8 +7,6 @@ public:
     ECU280Frame();
     virtual ~ECU280Frame();
 
-//    virtual const unsigned char* getBytes() override;
-
     void setRpm(unsigned short rpm);
 private:
     struct {

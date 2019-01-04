@@ -8,8 +8,6 @@ public:
     MotorSpeed320Frame();
     virtual ~MotorSpeed320Frame() { }
 
-//    virtual unsigned char* getBytes() { return (unsigned char*)&frame; }
-
     void setSpeed(float speed) { frame.speed = speed * 100; }
 private:
     struct {

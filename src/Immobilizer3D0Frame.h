@@ -7,7 +7,6 @@ public:
     Immobilizer3D0Frame();
     virtual ~Immobilizer3D0Frame() { }
 
-//    virtual unsigned char* getBytes() { return (unsigned char*)&frame; }
 private:
     struct {
         // byte 0

@@ -14,8 +14,3 @@ DefaultFrame::DefaultFrame() : BaseFrame(0x00, 0, &frame) {
 
 DefaultFrame::~DefaultFrame() {
 }
-
-//const unsigned char* DefaultFrame::getBytes() {
-//    return (unsigned char*)&frame;
-//}
-

@@ -7,8 +7,6 @@ public:
     Lights470Frame();
     virtual ~Lights470Frame();
 
-//    virtual const unsigned char* getBytes() override;
-
     const unsigned long id = 0x470;
     const unsigned char ext = 0;
 
