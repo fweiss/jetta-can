@@ -2,8 +2,7 @@
 
 #include <Arduino.h>
 
-// fixme should be ref, not copy?
-CANApplication::CANApplication(MCP_CAN& can) : slowTimer(1000){
+CANApplication::CANApplication(MCP_CAN& can) {
     this->can = can;
 }
 
@@ -11,9 +10,6 @@ void CANApplication::setup() {
 
 }
 void CANApplication::loop() {
-    if (slowTimer.event()) {
-//        Serial.println("slow");
-    }
 }
 
 void CANApplication::send(BaseFrame& frame) {

@@ -18,7 +18,5 @@ public:
 private:
     MCP_CAN can;
 
-    LoopTimer slowTimer;
-
     void printSendTrace(unsigned long id);
 };
