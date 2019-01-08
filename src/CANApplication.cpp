@@ -2,7 +2,14 @@
 
 #include <Arduino.h>
 
-CANApplication::CANApplication(MCP_CAN& can) {
+CANApplication::CANApplication(MCP_CAN& can) :
+ timer1Hz(1000),
+ timer5Hz(200),
+ timer10Hz(100),
+ timer20Hz(50),
+ timer50Hz(20),
+ timer100Hz(10)
+{
     this->can = can;
 }
 
@@ -30,12 +37,59 @@ void CANApplication::send(BaseFrame& frame) {
 }
 
 void CANApplication::loopReceive() {
+    byte result = can.checkReceive();
+    if (result == CAN_MSGAVAIL) {
+        receive(traceFrame);
+    }
 }
 
 void CANApplication::loopSignals() {
+    ecu280Frame.setRpm(800);
+
+    float speed = 20.0;
+    vehicleSpeed.setSpeedMph(speed);
+    absFrame.setSpeed(speed * 0.62 * 1.4285 * 256);
+    motorSpeed.setSpeed(speed * 0.62 * 1.4285 * 256);
+
+    vehicleSpeed.setAbsWarning(false);
+    vehicleSpeed.setOffroadWarning(false);
+
+//    lightframe.setInstrumentBacklightBrightness(127);
+    lightframe.setFoglamp(false);
+    lightframe.setHighbeam(false);
+    lightframe.setLowBatteryWarning(false);
+//    lightframe.setDoorAjar(1);
+
+    engine.setFuelCapNotTight(false);
+
+    airbagFrame.setSeatbeltWarning(false);
 }
 
 void CANApplication::loopTransmit() {
+    // minimal vehicle speed PGNs: engine2, vehiclespeed, absframe
+
+        if (timer100Hz.event()) { // 1A0, 4A0
+        }
+        if (timer50Hz.event()) { // 280
+    //        app.send(immobilizer);
+            send(engine2);
+
+    //        app.send(motorSpeed);
+    //        app.send(ecu280Frame);
+            send(vehicleSpeed);
+            send(absFrame);
+    //        app.send(airbagFrame);
+        }
+        if (timer10Hz.event()) { // 35B, 5A0, 621, 727
+        }
+        if (timer5Hz.event()) {
+    //        app.send(lightframe);
+    //        app.send(engine);
+        }
+        if (timer1Hz.event()) {
+        }
+
+    //    app.send(defaultFrame);
 }
 
 void CANApplication::receive(BaseFrame& frame) {

@@ -60,6 +60,10 @@ void setup() {
 
 void loop()
 {
+    app.loop();
+    delay(1);
+    return;
+
     byte result = CAN.checkReceive();
     if (result == CAN_MSGAVAIL) {
         app.receive(traceFrame);
