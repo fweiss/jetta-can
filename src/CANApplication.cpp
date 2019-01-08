@@ -10,6 +10,9 @@ void CANApplication::setup() {
 
 }
 void CANApplication::loop() {
+    loopReceive();
+    loopSignals();
+    loopTransmit();
 }
 
 void CANApplication::send(BaseFrame& frame) {
@@ -24,6 +27,15 @@ void CANApplication::send(BaseFrame& frame) {
         Serial.print(" send error: ");
         Serial.println(status);
     }
+}
+
+void CANApplication::loopReceive() {
+}
+
+void CANApplication::loopSignals() {
+}
+
+void CANApplication::loopTransmit() {
 }
 
 void CANApplication::receive(BaseFrame& frame) {

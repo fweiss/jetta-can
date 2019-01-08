@@ -18,5 +18,9 @@ public:
 private:
     MCP_CAN can;
 
+    void loopReceive();
+    void loopSignals();
+    void loopTransmit();
+
     void printSendTrace(unsigned long id);
 };
