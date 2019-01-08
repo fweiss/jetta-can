@@ -66,30 +66,30 @@ void CANApplication::loopSignals() {
 }
 
 void CANApplication::loopTransmit() {
-    // minimal vehicle speed PGNs: engine2, vehiclespeed, absframe
+// minimal vehicle speed PGNs: engine2, vehiclespeed, absframe
 
-        if (timer100Hz.event()) { // 1A0, 4A0
-        }
-        if (timer50Hz.event()) { // 280
-    //        app.send(immobilizer);
-            send(engine2);
+    if (timer100Hz.event()) { // 1A0, 4A0
+    }
+    if (timer50Hz.event()) { // 280
+//        app.send(immobilizer);
+        send(engine2);
 
-    //        app.send(motorSpeed);
-    //        app.send(ecu280Frame);
-            send(vehicleSpeed);
-            send(absFrame);
-    //        app.send(airbagFrame);
-        }
-        if (timer10Hz.event()) { // 35B, 5A0, 621, 727
-        }
-        if (timer5Hz.event()) {
-    //        app.send(lightframe);
-    //        app.send(engine);
-        }
-        if (timer1Hz.event()) {
-        }
+//        app.send(motorSpeed);
+//        app.send(ecu280Frame);
+        send(vehicleSpeed);
+        send(absFrame);
+//        app.send(airbagFrame);
+    }
+    if (timer10Hz.event()) { // 35B, 5A0, 621, 727
+    }
+    if (timer5Hz.event()) {
+//        app.send(lightframe);
+//        app.send(engine);
+    }
+    if (timer1Hz.event()) {
+    }
 
-    //    app.send(defaultFrame);
+//    app.send(defaultFrame);
 }
 
 void CANApplication::receive(BaseFrame& frame) {
