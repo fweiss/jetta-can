@@ -54,11 +54,11 @@ void CANApplication::loopSignals() {
     vehicleSpeed.setAbsWarning(false);
     vehicleSpeed.setOffroadWarning(false);
 
-//    lightframe.setInstrumentBacklightBrightness(127);
+    lightframe.setInstrumentBacklightBrightness(127);
     lightframe.setFoglamp(false);
     lightframe.setHighbeam(false);
     lightframe.setLowBatteryWarning(false);
-//    lightframe.setDoorAjar(1);
+    lightframe.setDoorAjar(3);
 
     engine.setFuelCapNotTight(false);
 
@@ -74,22 +74,22 @@ void CANApplication::loopTransmit() {
 //        app.send(immobilizer);
         send(engine2);
 
-//        app.send(motorSpeed);
-//        app.send(ecu280Frame);
+//        send(motorSpeed);
+        send(ecu280Frame);
         send(vehicleSpeed);
         send(absFrame);
-//        app.send(airbagFrame);
+//        send(airbagFrame);
     }
     if (timer10Hz.event()) { // 35B, 5A0, 621, 727
     }
     if (timer5Hz.event()) {
-//        app.send(lightframe);
-//        app.send(engine);
+        send(lightframe);
+//        send(engine);
     }
     if (timer1Hz.event()) {
     }
 
-//    app.send(defaultFrame);
+//    send(defaultFrame);
 }
 
 void CANApplication::receive(BaseFrame& frame) {
