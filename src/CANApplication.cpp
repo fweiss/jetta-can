@@ -92,13 +92,28 @@ void CANApplication::loopTransmit() {
 
 void CANApplication::loopTransmitSpeed() {
 // minimal vehicle speed PGNs: engine_DA0, vehicleSpeed_5A0, abs_1A0
+    int speed = 120.0 / 0.0075;
+    int distance_multiplier = 2;
+
+    int distance_adder = speed * distance_multiplier;
+    distance_counter += distance_adder;
+    if (distance_counter > distance_adder) {
+        distance_counter = 0;
+    }
+    motorSpeed320.setSpeed(speed * 100);
+    vehicleSpeed5A0.setSpeedRaw(speed);
+    vehicleSpeed5A0.setDistanceTraveled(distance_counter);
+    abs_1A0.setSpeed(speed);
+
 
     if (timer100Hz.event()) { // 1A0, 4A0
     }
     if (timer50Hz.event()) { // 280
-        send(engineDA0);
+        send(motorSpeed320);
         send(vehicleSpeed5A0);
         send(abs_1A0);
+
+//        send(engineDA0);
     }
     if (timer10Hz.event()) { // 35B, 5A0, 621, 727
     }

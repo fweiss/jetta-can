@@ -55,4 +55,6 @@ private:
     LoopTimer timer20Hz;
     LoopTimer timer50Hz;
     LoopTimer timer100Hz;
+
+    int distance_counter;
 };

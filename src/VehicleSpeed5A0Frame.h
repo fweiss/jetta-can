@@ -8,6 +8,7 @@ public:
     VehicleSpeed5A0Frame();
 
     void setSpeedMph(float mph);
+    void setSpeedRaw(unsigned short speed) { frame.speed = speed; }
     void setDistanceTraveled(unsigned long distance);
     void setAbsWarning(bool onOff) { frame.abs = onOff; }
     void setOffroadWarning(bool onOff) { frame.offroad = onOff; }
