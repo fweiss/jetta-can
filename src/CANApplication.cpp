@@ -19,7 +19,7 @@ void CANApplication::setup() {
 void CANApplication::loop() {
     loopReceive();
     loopSignals();
-    loopTransmit();
+    loopTransmitSpeed();
 }
 
 void CANApplication::send(BaseFrame& frame) {
@@ -47,12 +47,12 @@ void CANApplication::loopSignals() {
     ecu280Frame.setRpm(800);
 
     float speed = 20.0;
-    vehicleSpeed.setSpeedMph(speed);
-    absFrame.setSpeed(speed * 0.62 * 1.4285 * 256);
-    motorSpeed.setSpeed(speed * 0.62 * 1.4285 * 256);
+    vehicleSpeed5A0.setSpeedMph(speed);
+    abs_1A0.setSpeed(speed * 0.62 * 1.4285 * 256);
+    motorSpeed320.setSpeed(speed * 0.62 * 1.4285 * 256);
 
-    vehicleSpeed.setAbsWarning(false);
-    vehicleSpeed.setOffroadWarning(false);
+    vehicleSpeed5A0.setAbsWarning(false);
+    vehicleSpeed5A0.setOffroadWarning(false);
 
     lightframe.setInstrumentBacklightBrightness(127);
     lightframe.setFoglamp(false);
@@ -66,30 +66,46 @@ void CANApplication::loopSignals() {
 }
 
 void CANApplication::loopTransmit() {
-// minimal vehicle speed PGNs: engine2, vehiclespeed, absframe
-
     if (timer100Hz.event()) { // 1A0, 4A0
     }
     if (timer50Hz.event()) { // 280
-//        app.send(immobilizer);
-        send(engine2);
+        send(immobilizer);
+        send(engineDA0);
 
-//        send(motorSpeed);
+        send(motorSpeed320);
         send(ecu280Frame);
-        send(vehicleSpeed);
-        send(absFrame);
-//        send(airbagFrame);
+        send(vehicleSpeed5A0);
+        send(abs_1A0);
+        send(airbagFrame);
     }
     if (timer10Hz.event()) { // 35B, 5A0, 621, 727
     }
     if (timer5Hz.event()) {
         send(lightframe);
-//        send(engine);
+        send(engine);
     }
     if (timer1Hz.event()) {
     }
 
 //    send(defaultFrame);
+}
+
+void CANApplication::loopTransmitSpeed() {
+// minimal vehicle speed PGNs: engine_DA0, vehicleSpeed_5A0, abs_1A0
+
+    if (timer100Hz.event()) { // 1A0, 4A0
+    }
+    if (timer50Hz.event()) { // 280
+        send(engineDA0);
+        send(vehicleSpeed5A0);
+        send(abs_1A0);
+    }
+    if (timer10Hz.event()) { // 35B, 5A0, 621, 727
+    }
+    if (timer5Hz.event()) {
+    }
+    if (timer1Hz.event()) {
+    }
 }
 
 void CANApplication::receive(BaseFrame& frame) {

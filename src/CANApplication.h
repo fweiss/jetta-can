@@ -33,20 +33,21 @@ private:
     void loopReceive();
     void loopSignals();
     void loopTransmit();
+    void loopTransmitSpeed();
 
     void printSendTrace(unsigned long id);
 
     ECU280Frame ecu280Frame;
     Lights470Frame lightframe;
     Airbag050Frame airbagFrame;
-    VehicleSpeed5A0Frame vehicleSpeed;
+    VehicleSpeed5A0Frame vehicleSpeed5A0;
     Engine480Frame engine;
-    ABS1A0Frame absFrame;
+    ABS1A0Frame abs_1A0;
     DefaultFrame defaultFrame;
     TraceFrame traceFrame;
-    EngineDA0Frame engine2;
+    EngineDA0Frame engineDA0;
     Immobilizer3D0Frame immobilizer;
-    MotorSpeed320Frame motorSpeed;
+    MotorSpeed320Frame motorSpeed320;
 
     LoopTimer timer1Hz;
     LoopTimer timer5Hz;
