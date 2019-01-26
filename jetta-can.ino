@@ -9,7 +9,7 @@ MCP_CAN CAN(9);
 CANApplication app(CAN);
 
 void setup() {
-    Serial.begin(9600);
+    Serial.begin(115200);
     Serial.println("started setup");
 
     byte result = CAN.begin(CAN_500KBPS);

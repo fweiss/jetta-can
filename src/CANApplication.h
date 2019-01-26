@@ -36,6 +36,7 @@ private:
     void loopTransmitSpeed();
 
     void printSendTrace(unsigned long id);
+    void printReceiveTrace(unsigned short id, byte ext, byte rtr, byte length, byte* buffer);
 
     ECU280Frame ecu280Frame;
     Lights470Frame lightframe;

@@ -19,7 +19,7 @@ void CANApplication::setup() {
 void CANApplication::loop() {
     loopReceive();
     loopSignals();
-    loopTransmitSpeed();
+//    loopTransmitSpeed();
 }
 
 void CANApplication::send(BaseFrame& frame) {
@@ -125,7 +125,7 @@ void CANApplication::loopTransmitSpeed() {
 
 void CANApplication::receive(BaseFrame& frame) {
     bool showTrace = true;
-    unsigned short traceId = 0;
+    unsigned short traceId = 0x727;
 
     unsigned long id;
     byte ext;
@@ -138,21 +138,41 @@ void CANApplication::receive(BaseFrame& frame) {
     status = can.readMsgBufID(rxTxStatus, &id, &ext, &rtr, &length, buffer);
 
     if (showTrace && (traceId == 0 || id == traceId)) {
-        Serial.print("received id: ");
-        Serial.print(id, HEX);
-        Serial.print(" ext: ");
-        Serial.print(ext, HEX);
-        Serial.print(" rtr: ");
-        Serial.print(rtr, HEX);
-        Serial.print(" length: ");
-        Serial.print(length);
-        Serial.print(" data:");
-        for (int i=0; i<length; i++) {
-            Serial.print(" ");
-            Serial.print(buffer[i], HEX);
-        }
-        Serial.println();
+        printReceiveTrace(id, ext, rtr, length, buffer);
+//        Serial.print(millis());
+//        Serial.print(": received id: ");
+//        Serial.print(id, HEX);
+//        Serial.print(" ext: ");
+//        Serial.print(ext, HEX);
+//        Serial.print(" rtr: ");
+//        Serial.print(rtr, HEX);
+//        Serial.print(" length: ");
+//        Serial.print(length);
+//        Serial.print(" data:");
+//        for (int i=0; i<length; i++) {
+//            Serial.print(" ");
+//            Serial.print(buffer[i], HEX);
+//        }
+//        Serial.println();
     }
+}
+
+void CANApplication::printReceiveTrace(unsigned short id, byte ext, byte rtr, byte length, byte* buffer) {
+    Serial.print(millis());
+    Serial.print(": received id: ");
+    Serial.print(id, HEX);
+    Serial.print(" ext: ");
+    Serial.print(ext, HEX);
+    Serial.print(" rtr: ");
+    Serial.print(rtr, HEX);
+    Serial.print(" length: ");
+    Serial.print(length);
+    Serial.print(" data:");
+    for (int i=0; i<length; i++) {
+        Serial.print(" ");
+        Serial.print(buffer[i], HEX);
+    }
+    Serial.println();
 }
 
 void CANApplication::printSendTrace(unsigned long id) {

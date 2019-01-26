@@ -79,11 +79,18 @@ about one per second, but seems to com e in bursts
 some of the values change
 
 ### 727 instrument cluster
+200 ms
 length 7
 4 3 1 0 2 0 0 key on
 1 1 4 0 6 0 0 key off
 2 3 5 0 6 0 0 key on cluster starting
 4 3 1 0 2 0 0 cluster ready
+
+(no ecus)
+         1 3 5 0 6 0 0 key on
++200 x4  1 3 5 0 6 0 0
++200 x10 4 3 1 0 6 0 0
++200     4 3 1 0 2 0 0
 
 ### 420
 95 FF FF 00 08 7F FF 84 key on
