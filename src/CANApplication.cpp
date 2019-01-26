@@ -125,7 +125,9 @@ void CANApplication::loopTransmitSpeed() {
 
 void CANApplication::receive(BaseFrame& frame) {
     bool showTrace = true;
-    unsigned short traceId = 0x727;
+    unsigned short traceId = 0x60e;
+    unsigned short exclude[] = { 0x320, 0x420, 0x621, 0x62d, 0x727,
+    0x520, 0x51a, 0x62b, 0x629, 0x52a, 0x5d2, 0x62e, 0x5f3, 0x60e };
 
     unsigned long id;
     byte ext;
@@ -137,6 +139,14 @@ void CANApplication::receive(BaseFrame& frame) {
     byte rxTxStatus = can.readRxTxStatus();
     status = can.readMsgBufID(rxTxStatus, &id, &ext, &rtr, &length, buffer);
 
+    boolean block = false;
+    for (unsigned short xid : exclude) {
+        if (xid == id) {
+            block = true;
+        }
+    }
+
+//    if (! block) {
     if (showTrace && (traceId == 0 || id == traceId)) {
         printReceiveTrace(id, ext, rtr, length, buffer);
     }

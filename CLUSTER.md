@@ -61,22 +61,30 @@ inner CW
 Frames that are emitted from the cluster
 
 ### 320 instrument cluster
+20 ms
 typical
 1A 01 FF FF FF CX FF A9
+12 01 FF FF FF CX FF BF
 where X varies
 also change after the speedometer resets
 
 ### 621 instrument cluster
+100 ms
 typical
-00 EF 5 FF 90 32 0 0
+00 EF 05 FF 90 32 00 00
 00 00 80 FF 90 7F 17 00
+00 00 80 FF 90 7F 1C 00
+byte[6] seems to increment, but jumps arround every few seconds
 
 ### 62D
+1000 ms
 typical
 D0 47 15 80 1F 00 29 80
 FE 4F 00 80 8D 00 FE BF
-about one per second, but seems to com e in bursts
+FE 4F 00 80 21 00 FE BF
+about one per second, but seems to come in bursts?
 some of the values change
+byte[4] seems to increment slowly
 
 ### 727 instrument cluster
 200 ms
@@ -93,14 +101,49 @@ length 7
 +200     4 3 1 0 2 0 0
 
 ### 420
+200 ms
 95 FF FF 00 08 7F FF 84 key on
 91 FF FF 00 08 3A FF 80 key off
 and some intermediate after turning on
 
+### 520
+200 ms, varies
+typical 
+61 43 00 00 80 09 F4 0
+byte[0-1] varies
+
+### 51A
+500 ms varies
+typical 
+FF FF FF FF FF FF FF 03
+byte[0] cycles FE, FC, FF, FD
+
+### 62E
+1000 ms
+typical
+09 f4 30 f1 bd 32 01
+byte[5-6] vary
+
+Emitted PIDs:
+
+| PID   | Period       | Typical                 | Notes |
+|---    |---           |---                      |---    |
+| 0x60e | varies 2-8 s | 97 00                   |       |
+| 0x520 | 200 ms       | 61 43 00 00 80 09 F4 00 | Sometimes period 400 ms |
+| 0x51a | 500 ms       | FF FF FF FF FF FF FF 03 | Period varies |
+| 0x62b | 1000 ms      | FE 2F 00 80 46 00 FE BF | |
+| 0X629 | 1000 ms      | FE 4F FE BF A2 97 80 FF | |
+| 0X52A | 2000 ms      | 00 00 00 00 00 00 00 00 | period varies |
+| 0x5d2 | varies       | 00 00 00 00 00 33 56 57 | period and payload varies |
+| 0x62e | 1000 ms      | 09 f4 30 f1 bd 32 01    | payload varies |
+| 0x5f3 | 500 ms       | 08 00 FF 0F 00 00 00 00 | period varies |
+| 0x60e | 1000 ms      | 97 00                   | bursts of two vary 70 sec or so | 
+
+
 ## Connector pinouts
 Source: http://www.polo6rfreunde.de/index.php/Thread/9562-Pinbelegung-Tacho-Stecker/
 
-Verfied pins marked with asterisk.
+Verified pins are marked with asterisk.
 
 | Pin | Function DE | Function EN |
 |---  |---          |---          |
@@ -146,5 +189,20 @@ Trying to get the speedometer to hold a stady speed.
 - PGN 5A0+1A0+DA0, steady for a few seconds at a time, flutters, goes to zero momentarily
 - without DA0, goes to zero after ~5 sec
 - moving 5A0 to 1 sec interval, smaller twiitches, but eventully zero
+
+## Buttons
+There are two buttons. The left one controls mode and the right one select.
+
+Mode 0
+Select toggles etween odometer and trip odometer
+Mode 1
+Set hours
+Mode 2
+Set minutes
+Mode 3
+Display time 1 and service miles
+Mode 4
+Display time 2 and service miles
+
 
 
