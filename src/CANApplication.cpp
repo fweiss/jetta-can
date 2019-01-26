@@ -124,7 +124,8 @@ void CANApplication::loopTransmitSpeed() {
 }
 
 void CANApplication::receive(BaseFrame& frame) {
-    bool showTrace = false;
+    bool showTrace = true;
+    unsigned short traceId = 0;
 
     unsigned long id;
     byte ext;
@@ -136,7 +137,7 @@ void CANApplication::receive(BaseFrame& frame) {
     byte rxTxStatus = can.readRxTxStatus();
     status = can.readMsgBufID(rxTxStatus, &id, &ext, &rtr, &length, buffer);
 
-    if (showTrace && id == 0x320) {
+    if (showTrace && (traceId == 0 || id == traceId)) {
         Serial.print("received id: ");
         Serial.print(id, HEX);
         Serial.print(" ext: ");
