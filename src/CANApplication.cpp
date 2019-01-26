@@ -139,21 +139,6 @@ void CANApplication::receive(BaseFrame& frame) {
 
     if (showTrace && (traceId == 0 || id == traceId)) {
         printReceiveTrace(id, ext, rtr, length, buffer);
-//        Serial.print(millis());
-//        Serial.print(": received id: ");
-//        Serial.print(id, HEX);
-//        Serial.print(" ext: ");
-//        Serial.print(ext, HEX);
-//        Serial.print(" rtr: ");
-//        Serial.print(rtr, HEX);
-//        Serial.print(" length: ");
-//        Serial.print(length);
-//        Serial.print(" data:");
-//        for (int i=0; i<length; i++) {
-//            Serial.print(" ");
-//            Serial.print(buffer[i], HEX);
-//        }
-//        Serial.println();
     }
 }
 
