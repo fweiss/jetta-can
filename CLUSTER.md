@@ -58,7 +58,25 @@ inner CW
 - brake
 
 ## Emitted frames
-Frames that are emitted from the cluster
+The following PIDs are emitted from the cluster when the ignition is on.
+
+| PID   | Period       | Typical                 | Notes |
+|---    |---           |---                      |---    |
+| 0x320 | 20 ms        | 1A 01 FF FF FF CX FF A9 | byte 5 varies see notes |
+| 0x420 | 200 ms       | 95 FF FF 00 08 7F FF 84 | |
+| 0x460 | varies       | see notes               | burst of eight |
+| 0x520 | 200 ms       | 61 43 00 00 80 09 F4 00 | Sometimes period 400 ms |
+| 0x51A | 500 ms       | FF FF FF FF FF FF FF 03 | Period varies |
+| 0X52A | 2000 ms      | 00 00 00 00 00 00 00 00 | period varies |
+| 0x5d2 | varies       | 00 00 00 00 00 33 56 57 | period and payload varies |
+| 0x5f3 | 500 ms       | 08 00 FF 0F 00 00 00 00 | period varies |
+| 0x60E | 1000 ms      | 97 00                   | bursts of two vary 70 sec or so |
+| 0x621 | 100 ms       | 00 EF 05 FF 90 32 00 00 | |
+| 0X629 | 1000 ms      | FE 4F FE BF A2 97 80 FF | |
+| 0x62B | 1000 ms      | FE 2F 00 80 46 00 FE BF | |
+| 0x62D | 1000 ms      | D0 47 15 80 1F 00 29 80 | |
+| 0x62E | 1000 ms      | 09 f4 30 f1 bd 32 01    | payload varies |
+| 0x727 | 200 ms       | 04 03 01 00 02 00 00    | |
 
 ### 320 instrument cluster
 20 ms
@@ -73,6 +91,30 @@ also change after the speedometer resets
 95 FF FF 00 08 7F FF 84 key on
 91 FF FF 00 08 3A FF 80 key off
 and some intermediate after turning on
+
+### 0x460
+period varies
+typical
+45301: received id: 460 ext: 0 rtr: 0 length: 8 data: 00 E6 43 06 21 11 00 00
+45402: received id: 460 ext: 0 rtr: 0 length: 8 data: 01 0E 1B 0C 04 14 73 F4
+45501: received id: 460 ext: 0 rtr: 0 length: 8 data: 02 00 00 45 30 FA 10 18
+45601: received id: 460 ext: 0 rtr: 0 length: 8 data: 03 30 93 11 06 20 00 00
+45702: received id: 460 ext: 0 rtr: 0 length: 8 data: 04 00 00 00 20 00 00 00
+45803: received id: 460 ext: 0 rtr: 0 length: 8 data: 05 00 00 00 00 00 02 00
+45903: received id: 460 ext: 0 rtr: 0 length: 8 data: 06 00 00 FF FF 00 00 00
+46003: received id: 460 ext: 0 rtr: 0 length: 8 data: 07 00 AA AA AA AA AA AA
+
+### 51A
+500 ms varies
+typical 
+FF FF FF FF FF FF FF 03
+byte[0] cycles FE, FC, FF, FD
+
+### 520
+200 ms, varies
+typical 
+61 43 00 00 80 09 F4 0
+byte[0-1] varies
 
 ### 621 instrument cluster
 100 ms
@@ -92,6 +134,12 @@ about one per second, but seems to come in bursts?
 some of the values change
 byte[4] seems to increment slowly
 
+### 62E
+1000 ms
+typical
+09 f4 30 f1 bd 32 01
+byte[5-6] vary
+
 ### 727 instrument cluster
 200 ms
 length 7
@@ -105,59 +153,6 @@ length 7
 +200 x4  1 3 5 0 6 0 0
 +200 x10 4 3 1 0 6 0 0
 +200     4 3 1 0 2 0 0
-
-### 520
-200 ms, varies
-typical 
-61 43 00 00 80 09 F4 0
-byte[0-1] varies
-
-### 51A
-500 ms varies
-typical 
-FF FF FF FF FF FF FF 03
-byte[0] cycles FE, FC, FF, FD
-
-### 62E
-1000 ms
-typical
-09 f4 30 f1 bd 32 01
-byte[5-6] vary
-
-### 0x460
-period varies
-typical
-45301: received id: 460 ext: 0 rtr: 0 length: 8 data: 00 E6 43 06 21 11 00 00
-45402: received id: 460 ext: 0 rtr: 0 length: 8 data: 01 0E 1B 0C 04 14 73 F4
-45501: received id: 460 ext: 0 rtr: 0 length: 8 data: 02 00 00 45 30 FA 10 18
-45601: received id: 460 ext: 0 rtr: 0 length: 8 data: 03 30 93 11 06 20 00 00
-45702: received id: 460 ext: 0 rtr: 0 length: 8 data: 04 00 00 00 20 00 00 00
-45803: received id: 460 ext: 0 rtr: 0 length: 8 data: 05 00 00 00 00 00 02 00
-45903: received id: 460 ext: 0 rtr: 0 length: 8 data: 06 00 00 FF FF 00 00 00
-46003: received id: 460 ext: 0 rtr: 0 length: 8 data: 07 00 AA AA AA AA AA AA
-
-Emitted PIDs:
-
-| PID   | Period       | Typical                 | Notes |
-|---    |---           |---                      |---    |
-| 0x60e | varies 2-8 s | 97 00                   |       |
-| 0x520 | 200 ms       | 61 43 00 00 80 09 F4 00 | Sometimes period 400 ms |
-| 0x51a | 500 ms       | FF FF FF FF FF FF FF 03 | Period varies |
-| 0x62b | 1000 ms      | FE 2F 00 80 46 00 FE BF | |
-| 0X629 | 1000 ms      | FE 4F FE BF A2 97 80 FF | |
-| 0X52A | 2000 ms      | 00 00 00 00 00 00 00 00 | period varies |
-| 0x5d2 | varies       | 00 00 00 00 00 33 56 57 | period and payload varies |
-| 0x62e | 1000 ms      | 09 f4 30 f1 bd 32 01    | payload varies |
-| 0x5f3 | 500 ms       | 08 00 FF 0F 00 00 00 00 | period varies |
-| 0x60e | 1000 ms      | 97 00                   | bursts of two vary 70 sec or so |
-| 0x460 | varies       | see notes               | burst of eight |
-| 0x320 | 20 ms        | 1A 01 FF FF FF CX FF A9 | byte 5 varies see notes |
-| 0x420 | 200 ms       | 95 FF FF 00 08 7F FF 84 | |
-| 0x621 | 100 ms       | 00 EF 05 FF 90 32 00 00 | |
-| 0x62D | 1000 ms      | D0 47 15 80 1F 00 29 80 | |
-| 0x727 | 200 ms       | 04 03 01 00 02 00 00    | |
-
-
 
 ## Connector pinouts
 Source: http://www.polo6rfreunde.de/index.php/Thread/9562-Pinbelegung-Tacho-Stecker/
