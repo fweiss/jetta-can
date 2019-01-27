@@ -124,6 +124,18 @@ typical
 09 f4 30 f1 bd 32 01
 byte[5-6] vary
 
+### 0x460
+period varies
+typical
+45301: received id: 460 ext: 0 rtr: 0 length: 8 data: 00 E6 43 06 21 11 00 00
+45402: received id: 460 ext: 0 rtr: 0 length: 8 data: 01 0E 1B 0C 04 14 73 F4
+45501: received id: 460 ext: 0 rtr: 0 length: 8 data: 02 00 00 45 30 FA 10 18
+45601: received id: 460 ext: 0 rtr: 0 length: 8 data: 03 30 93 11 06 20 00 00
+45702: received id: 460 ext: 0 rtr: 0 length: 8 data: 04 00 00 00 20 00 00 00
+45803: received id: 460 ext: 0 rtr: 0 length: 8 data: 05 00 00 00 00 00 02 00
+45903: received id: 460 ext: 0 rtr: 0 length: 8 data: 06 00 00 FF FF 00 00 00
+46003: received id: 460 ext: 0 rtr: 0 length: 8 data: 07 00 AA AA AA AA AA AA
+
 Emitted PIDs:
 
 | PID   | Period       | Typical                 | Notes |
@@ -137,7 +149,8 @@ Emitted PIDs:
 | 0x5d2 | varies       | 00 00 00 00 00 33 56 57 | period and payload varies |
 | 0x62e | 1000 ms      | 09 f4 30 f1 bd 32 01    | payload varies |
 | 0x5f3 | 500 ms       | 08 00 FF 0F 00 00 00 00 | period varies |
-| 0x60e | 1000 ms      | 97 00                   | bursts of two vary 70 sec or so | 
+| 0x60e | 1000 ms      | 97 00                   | bursts of two vary 70 sec or so |
+| 0x460 | varies       | see notes               | burst of eight |
 
 
 ## Connector pinouts

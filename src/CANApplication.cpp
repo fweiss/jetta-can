@@ -20,10 +20,21 @@ void CANApplication::loop() {
     loopReceive();
     loopSignals();
 //    loopTransmitSpeed();
+//    loopTransmit();
+    loopTransmitQuery();
+}
+
+void CANApplication::loopTransmitQuery() {
+    if (timer1Hz.event()) {
+//        byte data[] = { 0x02, 0x01, 0x0c, 0, 0, 0, 0, 0 };
+        byte data[] = { 0x0200, 0x1f, 0xc0, 0, 0, 0, 0, 0 };
+        BaseFrame frame(0x7DF, 0, data);
+        send(frame);
+    }
 }
 
 void CANApplication::send(BaseFrame& frame) {
-//    printSendTrace(frame.id);
+    printSendTrace(frame);
 
     byte status = can.sendMsgBuf(frame.id, frame.ext, 8, frame.getBytes(), true);
     if (status == CAN_OK) {
@@ -126,6 +137,7 @@ void CANApplication::loopTransmitSpeed() {
 void CANApplication::receive(BaseFrame& frame) {
     bool showTrace = true;
     unsigned short traceId = 0x60e;
+    // following are emitted by cluster
     unsigned short exclude[] = { 0x320, 0x420, 0x621, 0x62d, 0x727,
     0x520, 0x51a, 0x62b, 0x629, 0x52a, 0x5d2, 0x62e, 0x5f3, 0x60e };
 
@@ -146,8 +158,8 @@ void CANApplication::receive(BaseFrame& frame) {
         }
     }
 
-//    if (! block) {
-    if (showTrace && (traceId == 0 || id == traceId)) {
+    if (! block) {
+//    if (showTrace && (traceId == 0 || id == traceId)) {
         printReceiveTrace(id, ext, rtr, length, buffer);
     }
 }
@@ -170,9 +182,21 @@ void CANApplication::printReceiveTrace(unsigned short id, byte ext, byte rtr, by
     Serial.println();
 }
 
-void CANApplication::printSendTrace(unsigned long id) {
+void CANApplication::printSendTrace(BaseFrame& frame) {
     Serial.print(millis());
-    Serial.print(": ");
-    Serial.println(id, HEX);
+    Serial.print(": transmit id: ");
+    Serial.print(frame.id, HEX);
+    Serial.print(" ext: ");
+    Serial.print(frame.ext, HEX);
+    Serial.print(" rtr: ");
+    Serial.print(frame.rtr, HEX);
+    Serial.print(" length: ");
+    Serial.print(frame.length);
+    Serial.print(" data:");
+    for (int i=0; i<frame.length; i++) {
+        Serial.print(" ");
+        Serial.print(frame.data[i], HEX);
+    }
+    Serial.println();
 }
 

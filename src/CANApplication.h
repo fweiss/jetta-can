@@ -34,8 +34,9 @@ private:
     void loopSignals();
     void loopTransmit();
     void loopTransmitSpeed();
+    void loopTransmitQuery();
 
-    void printSendTrace(unsigned long id);
+    void printSendTrace(BaseFrame& frame);
     void printReceiveTrace(unsigned short id, byte ext, byte rtr, byte length, byte* buffer);
 
     ECU280Frame ecu280Frame;

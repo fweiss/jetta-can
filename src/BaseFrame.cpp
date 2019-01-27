@@ -6,6 +6,11 @@
 // a more natural way is union, but not sure how that can be inherited
 // using unsigned char* getBytes() may be more flexible as it can be computed,
 // but the bitfield approach requires less boiler plate and no vtable
-BaseFrame::BaseFrame(const unsigned long id, const unsigned char ext, void* data) : id(id), ext(ext) {
+BaseFrame::BaseFrame(const unsigned long id, const unsigned char ext, void* data) :
+    id(id),
+    ext(ext),
+    length(8) {
     this->data = (const unsigned char *)data;
+//    static unsigned char dd[8] = { 0xaa, 0xbb, 0xcc, 0xdd };
+//    this->data = dd;
 }

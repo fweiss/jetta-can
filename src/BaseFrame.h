@@ -6,6 +6,8 @@ public:
 
     const unsigned long id;
     const unsigned char ext;
+    const unsigned char rtr;
+    const unsigned char length;
     const unsigned char* data;
 
     const unsigned char* getBytes() { return data; }
