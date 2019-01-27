@@ -68,6 +68,12 @@ typical
 where X varies
 also change after the speedometer resets
 
+### 420
+200 ms
+95 FF FF 00 08 7F FF 84 key on
+91 FF FF 00 08 3A FF 80 key off
+and some intermediate after turning on
+
 ### 621 instrument cluster
 100 ms
 typical
@@ -99,12 +105,6 @@ length 7
 +200 x4  1 3 5 0 6 0 0
 +200 x10 4 3 1 0 6 0 0
 +200     4 3 1 0 2 0 0
-
-### 420
-200 ms
-95 FF FF 00 08 7F FF 84 key on
-91 FF FF 00 08 3A FF 80 key off
-and some intermediate after turning on
 
 ### 520
 200 ms, varies
@@ -151,6 +151,12 @@ Emitted PIDs:
 | 0x5f3 | 500 ms       | 08 00 FF 0F 00 00 00 00 | period varies |
 | 0x60e | 1000 ms      | 97 00                   | bursts of two vary 70 sec or so |
 | 0x460 | varies       | see notes               | burst of eight |
+| 0x320 | 20 ms        | 1A 01 FF FF FF CX FF A9 | byte 5 varies see notes |
+| 0x420 | 200 ms       | 95 FF FF 00 08 7F FF 84 | |
+| 0x621 | 100 ms       | 00 EF 05 FF 90 32 00 00 | |
+| 0x62D | 1000 ms      | D0 47 15 80 1F 00 29 80 | |
+| 0x727 | 200 ms       | 04 03 01 00 02 00 00    | |
+
 
 
 ## Connector pinouts
