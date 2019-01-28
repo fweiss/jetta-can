@@ -8,7 +8,8 @@ CANApplication::CANApplication(MCP_CAN& can) :
  timer10Hz(100),
  timer20Hz(50),
  timer50Hz(20),
- timer100Hz(10)
+ timer100Hz(10),
+ signal1Hz(1000)
 {
     this->can = can;
 }
@@ -19,9 +20,39 @@ void CANApplication::setup() {
 void CANApplication::loop() {
     loopReceive();
     loopSignals();
+    loopTransmitDistance();
 //    loopTransmitSpeed();
 //    loopTransmit();
-    loopTransmitQuery();
+//    loopTransmitQuery();
+}
+
+void CANApplication::loopTransmitDistance() {
+    int speed = 102.0 / 0.0075;
+    int distance_multiplier = 1;
+
+    int distance_adder = 1000; //speed * distance_multiplier;
+//    distance_counter += distance_adder;
+//    if (distance_counter > distance_adder) {
+//        distance_counter = 0;
+//    }
+    motorSpeed320.setSpeed(speed * 100);
+    vehicleSpeed5A0.setSpeedRaw(speed);
+    vehicleSpeed5A0.setDistanceTraveled(distance_counter);
+    abs_1A0.setSpeed(speed);
+
+
+    if (timer100Hz.event()) { // 1A0, 4A0
+    }
+    if (timer50Hz.event()) { // 280
+//        send(motorSpeed320);
+        send(vehicleSpeed5A0);
+        send(abs_1A0);
+
+//        send(engineDA0);
+    }
+    if (timer1Hz.event()) {
+        distance_counter = 1;
+    }
 }
 
 void CANApplication::loopTransmitQuery() {
@@ -34,7 +65,7 @@ void CANApplication::loopTransmitQuery() {
 }
 
 void CANApplication::send(BaseFrame& frame) {
-    printSendTrace(frame);
+//    printSendTrace(frame);
 
     byte status = can.sendMsgBuf(frame.id, frame.ext, 8, frame.getBytes(), true);
     if (status == CAN_OK) {
@@ -74,6 +105,10 @@ void CANApplication::loopSignals() {
     engine.setFuelCapNotTight(false);
 
     airbagFrame.setSeatbeltWarning(false);
+
+    if (signal1Hz.event()) {
+        vehicleSpeed5A0.setDistanceTraveled(distance_counter);
+    }
 }
 
 void CANApplication::loopTransmit() {

@@ -35,6 +35,7 @@ private:
     void loopTransmit();
     void loopTransmitSpeed();
     void loopTransmitQuery();
+    void loopTransmitDistance();
 
     void printSendTrace(BaseFrame& frame);
     void printReceiveTrace(unsigned short id, byte ext, byte rtr, byte length, byte* buffer);
@@ -57,6 +58,7 @@ private:
     LoopTimer timer20Hz;
     LoopTimer timer50Hz;
     LoopTimer timer100Hz;
+    LoopTimer signal1Hz;
 
-    int distance_counter;
+    unsigned short distance_counter;
 };
