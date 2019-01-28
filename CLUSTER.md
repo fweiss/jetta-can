@@ -194,6 +194,8 @@ Verified pins are marked with asterisk.
 | 31* | Spannungsversorgung Kl. 15
 | 32* | Spannungsversorgung Kl. 30
 
+Note that some of the contacts are labeled with DIN 72552 numbers (e.g. 15, 30, 31)
+
 ## Fluttering speedometer
 Trying to get the speedometer to hold a stady speed.
 
