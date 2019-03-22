@@ -11,7 +11,7 @@ public:
 
     void setHighbeam(bool onOff);
     void setFoglamp(bool onOff);
-    void setDoorAjar(unsigned char doorNumber);
+    void setDoorAjar(unsigned char doorNumber, bool onOff);
     void setInstrumentBacklightBrightness(unsigned char brightness) { frame.instrumentBacklightBrightness = brightness; }
     void setLowBatteryWarning(bool onOff) { frame.lowBatteryWarning = onOff; }
 private:

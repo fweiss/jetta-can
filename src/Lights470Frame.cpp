@@ -11,7 +11,12 @@ void Lights470Frame::setFoglamp(bool onOff) {
     frame.foglamp = onOff;
 }
 
-void Lights470Frame::setDoorAjar(unsigned char index) {
+void Lights470Frame::setDoorAjar(unsigned char index, bool onOff) {
+    unsigned char mask = 1 << index;
     unsigned char* raw = getBytes();
-    raw[1] |= 1 << index;
+    if (onOff) {
+        raw[1] |= mask;
+    } else {
+        raw[1] &= ~ mask;
+    }
 }

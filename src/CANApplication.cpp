@@ -98,9 +98,9 @@ void CANApplication::loopSignals() {
 
     lightframe.setInstrumentBacklightBrightness(127);
     lightframe.setFoglamp(false);
-    lightframe.setHighbeam(true);
+    lightframe.setHighbeam(false);
     lightframe.setLowBatteryWarning(false);
-    lightframe.setDoorAjar(3);
+    lightframe.setDoorAjar(0, false);
 
     engine.setFuelCapNotTight(false);
 
