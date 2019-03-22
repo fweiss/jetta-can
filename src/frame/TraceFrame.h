@@ -1,11 +1,12 @@
 #pragma once
 
-#include <BaseFrame.h>
+#include <frame/BaseFrame.h>
 
-class Immobilizer3D0Frame: public BaseFrame {
+class TraceFrame: public BaseFrame {
 public:
-    Immobilizer3D0Frame();
+    TraceFrame();
 
+    void print();
 private:
     struct {
         // byte 0

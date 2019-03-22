@@ -1,10 +1,10 @@
 #pragma once
 
-#include "BaseFrame.h"
+#include <frame/BaseFrame.h>
 
-class EngineDA0Frame: public BaseFrame {
+class DefaultFrame: public BaseFrame {
 public:
-    EngineDA0Frame();
+    DefaultFrame();
 
 private:
     struct {

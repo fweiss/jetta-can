@@ -1,6 +1,6 @@
 #pragma once
 
-#include "BaseFrame.h"
+#include <frame/BaseFrame.h>
 
 class Lights470Frame : public BaseFrame {
 public:

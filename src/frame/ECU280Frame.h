@@ -1,6 +1,6 @@
 #pragma once
 
-#include "BaseFrame.h"
+#include <frame/BaseFrame.h>
 
 class ECU280Frame : public BaseFrame {
 public:

@@ -1,19 +1,18 @@
 #pragma once
 
-#include "BaseFrame.h"
+#include <frame/BaseFrame.h>
 
-class DefaultFrame: public BaseFrame {
+class ABS1A0Frame: public BaseFrame {
 public:
-    DefaultFrame();
+    ABS1A0Frame();
 
+    void setSpeed(unsigned short speed) { frame.speed = speed; }
 private:
     struct {
-        // byte 0
+        //byte 0
         unsigned char : 8;
-        // byte 1
-        unsigned char : 8;
-        // byte 2
-        unsigned char : 8;
+        // byte 1 and 2
+        unsigned short speed : 16;
         // byte 3
         unsigned char : 8;
         // byte 4

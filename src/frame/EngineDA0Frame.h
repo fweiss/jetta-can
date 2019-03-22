@@ -1,19 +1,19 @@
 #pragma once
 
-#include "BaseFrame.h"
+#include <frame/BaseFrame.h>
 
-class MotorSpeed320Frame: public BaseFrame
-{
+class EngineDA0Frame: public BaseFrame {
 public:
-    MotorSpeed320Frame();
+    EngineDA0Frame();
 
-    void setSpeed(float speed) { frame.speed = speed * 100; }
 private:
     struct {
         // byte 0
         unsigned char : 8;
-        // byte 1 and 2
-        unsigned short speed : 16;
+        // byte 1
+        unsigned char : 8;
+        // byte 2
+        unsigned char : 8;
         // byte 3
         unsigned char : 8;
         // byte 4

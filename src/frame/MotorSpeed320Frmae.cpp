@@ -5,7 +5,7 @@
  *      Author: frankw
  */
 
-#include <MotorSpeed320Frmae.h>
+#include <frame/MotorSpeed320Frmae.h>
 
 MotorSpeed320Frame::MotorSpeed320Frame() : BaseFrame(0x320, 0, &frame) {
 }

@@ -1,15 +1,16 @@
 #pragma once
 
-#include <BaseFrame.h>
+#include <frame/BaseFrame.h>
 
-class ABS1A0Frame: public BaseFrame {
+class MotorSpeed320Frame: public BaseFrame
+{
 public:
-    ABS1A0Frame();
+    MotorSpeed320Frame();
 
-    void setSpeed(unsigned short speed) { frame.speed = speed; }
+    void setSpeed(float speed) { frame.speed = speed * 100; }
 private:
     struct {
-        //byte 0
+        // byte 0
         unsigned char : 8;
         // byte 1 and 2
         unsigned short speed : 16;
