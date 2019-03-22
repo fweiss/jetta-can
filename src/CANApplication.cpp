@@ -86,7 +86,7 @@ void CANApplication::loopReceive() {
 }
 
 void CANApplication::loopSignals() {
-    ecu280Frame.setRpm(800);
+    ecu280Frame.setRpm(2200);
 
     float speed = 20.0;
     vehicleSpeed5A0.setSpeedMph(speed);
