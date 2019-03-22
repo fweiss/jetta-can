@@ -145,3 +145,7 @@ http://ev-a2.blogspot.com/2013/06/can-bus-analysis-started.html
 
 ### 0x470
 Turning lights 2?
+
+## Links and references
+
+[Seed Studios CAN Bus Shiels v2](http://wiki.seeedstudio.com/CAN-BUS_Shield_V2.0)

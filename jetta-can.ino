@@ -5,7 +5,12 @@
 
 #include "CANApplication.h"
 
-MCP_CAN CAN(9);
+// depending on the solder bridge configuration
+// the Seeed Studio CAN Bus Shield v2 can use GPIO 9 or 10
+// default bridge setting is 9
+const byte mcpCanChipSelect = 9;
+
+MCP_CAN CAN(mcpCanChipSelect);
 CANApplication app(CAN);
 
 void setup() {

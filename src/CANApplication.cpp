@@ -20,9 +20,9 @@ void CANApplication::setup() {
 void CANApplication::loop() {
     loopReceive();
     loopSignals();
-    loopTransmitDistance();
+//    loopTransmitDistance();
 //    loopTransmitSpeed();
-//    loopTransmit();
+    loopTransmit();
 //    loopTransmitQuery();
 }
 
@@ -98,7 +98,7 @@ void CANApplication::loopSignals() {
 
     lightframe.setInstrumentBacklightBrightness(127);
     lightframe.setFoglamp(false);
-    lightframe.setHighbeam(false);
+    lightframe.setHighbeam(true);
     lightframe.setLowBatteryWarning(false);
     lightframe.setDoorAjar(3);
 

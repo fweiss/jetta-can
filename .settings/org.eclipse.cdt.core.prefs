@@ -1044,7 +1044,7 @@ environment/project/io.sloeber.core.toolChain.release.1364509751/JANTJE.COM_PORT
 environment/project/io.sloeber.core.toolChain.release.1364509751/JANTJE.COM_PORT/value=/dev/cu.usbmodem1461
 environment/project/io.sloeber.core.toolChain.release.1364509751/JANTJE.ECLIPSE_LOCATION/delimiter=\:
 environment/project/io.sloeber.core.toolChain.release.1364509751/JANTJE.ECLIPSE_LOCATION/operation=replace
-environment/project/io.sloeber.core.toolChain.release.1364509751/JANTJE.ECLIPSE_LOCATION/value=${eclipse_home}//////////////////////////
+environment/project/io.sloeber.core.toolChain.release.1364509751/JANTJE.ECLIPSE_LOCATION/value=${eclipse_home}///////////////////////////////
 environment/project/io.sloeber.core.toolChain.release.1364509751/JANTJE.EXTRA.ALL/delimiter=\:
 environment/project/io.sloeber.core.toolChain.release.1364509751/JANTJE.EXTRA.ALL/operation=replace
 environment/project/io.sloeber.core.toolChain.release.1364509751/JANTJE.EXTRA.ALL/value=
