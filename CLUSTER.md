@@ -1,19 +1,16 @@
 # Cluster decoder
 
 ## Cluster components
-- tachometer and indicaTORS
-- speedometerand indicators
+- tachometer and indicators
+- speedometer and indicators
 - central display
 - audio
+- pushbuttons
 
 ## Tachometer
 - tachometer 0-8 (thousands)
 
- test |
-------|
- abc  |
-
-Starting from the bottom CW
+Indicator lights, starting from the bottom CW (defualt Red):
 - temp
 - traction off
 - lane sensing
@@ -38,24 +35,48 @@ Extra
 ## Spedometer
 - speedometer 0-160 MPH
 
-starting from bottom CW
+Lights inner starting from bottom CW:
 - spill?
 - airbag (Y)
 - break wear
 - ABS (Y)
 - offroad (Y)
-- brake
+- E brake
 - cruise
 - tire pressure (Y)
 - lane
 - DRL
 
-inner CW
+Lights inner CW
 - door ajar
 - trunk ajar
 - mirror
 - seatbelt
 - brake
+
+## Center display
+The center LCD display is divided into sections.
+From top to bottom:
+- current time
+- multi function (see buttons)
+- multi function: total miles, trip miles
+- fuel tank
+
+## Buttons
+There are two buttons which control the center display.
+The left one controls mode and the right one selects.
+The right one alsets the trip odometer.
+
+Mode 0
+Select toggles between odometer and trip odometer
+Mode 1
+Set hours
+Mode 2
+Set minutes
+Mode 3
+Display time 1 and service miles
+Mode 4
+Display time 2 and service miles
 
 ## Emitted frames
 The following PIDs are emitted from the cluster when the ignition is on.
@@ -70,7 +91,7 @@ The following PIDs are emitted from the cluster when the ignition is on.
 | 0X52A | 2000 ms      | 00 00 00 00 00 00 00 00 | period varies |
 | 0x5d2 | varies       | 00 00 00 00 00 33 56 57 | period and payload varies |
 | 0x5f3 | 500 ms       | 08 00 FF 0F 00 00 00 00 | period varies |
-| 0x60E | 1000 ms      | 97 00                   | bursts of two vary 70 sec or so |
+| 0x60E | 1000 ms      | 97 00                   | bursts of two every 70 sec or so |
 | 0x621 | 100 ms       | 00 EF 05 FF 90 32 00 00 | |
 | 0X629 | 1000 ms      | FE 4F FE BF A2 97 80 FF | |
 | 0x62B | 1000 ms      | FE 2F 00 80 46 00 FE BF | |
@@ -199,26 +220,7 @@ Note that some of the contacts are labeled with DIN 72552 numbers (e.g. 15, 30, 
 ## Fluttering speedometer
 Trying to get the speedometer to hold a stady speed.
 
-
-
 - PGN 5A0+1A0 (either of them), but goes to zero after ~5 sec
 - PGN 5A0+1A0+DA0, steady for a few seconds at a time, flutters, goes to zero momentarily
 - without DA0, goes to zero after ~5 sec
 - moving 5A0 to 1 sec interval, smaller twiitches, but eventully zero
-
-## Buttons
-There are two buttons. The left one controls mode and the right one select.
-
-Mode 0
-Select toggles etween odometer and trip odometer
-Mode 1
-Set hours
-Mode 2
-Set minutes
-Mode 3
-Display time 1 and service miles
-Mode 4
-Display time 2 and service miles
-
-
-
