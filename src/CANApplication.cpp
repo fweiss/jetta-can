@@ -58,7 +58,8 @@ void CANApplication::loopTransmitDistance() {
 void CANApplication::loopTransmitQuery() {
     if (timer1Hz.event()) {
 //        byte data[] = { 0x02, 0x01, 0x0c, 0, 0, 0, 0, 0 };
-        byte data[] = { 0x0200, 0x1f, 0xc0, 0, 0, 0, 0, 0 };
+        // byte data[] = { 0x0200, 0x1f, 0xc0, 0, 0, 0, 0, 0 };
+        byte data[] = { 0x020, 0x1f, 0xc0, 0, 0, 0, 0, 0 };
         BaseFrame frame(0x7DF, 0, data);
         send(frame);
     }

@@ -1,4 +1,2 @@
-/Release/
-/sloeber.ino.cpp
-/Debug/
-*.md.html
+.pio/
+.vscode
