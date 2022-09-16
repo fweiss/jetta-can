@@ -224,3 +224,9 @@ Trying to get the speedometer to hold a stady speed.
 - PGN 5A0+1A0+DA0, steady for a few seconds at a time, flutters, goes to zero momentarily
 - without DA0, goes to zero after ~5 sec
 - moving 5A0 to 1 sec interval, smaller twiitches, but eventully zero
+
+## Links and references
+[Overview of VW CAN Bus](http://www.volkspage.net/technik/ssp/ssp/SSP_238.pdf)
+
+[Savvy CAN hacking](https://www.voltlog.com/tag/vw-can-bus-dbc-file/)
+
