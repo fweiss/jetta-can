@@ -9,7 +9,9 @@ CANApplication::CANApplication(MCP_CAN& can) :
  timer20Hz(50),
  timer50Hz(20),
  timer100Hz(10),
- signal1Hz(1000)
+ signal1Hz(1000),
+
+ snortXXXFrame(0x420)
 {
     this->can = can;
 }
@@ -44,11 +46,11 @@ void CANApplication::loopTransmitDistance() {
     if (timer100Hz.event()) { // 1A0, 4A0
     }
     if (timer50Hz.event()) { // 280
-//        send(motorSpeed320);
+       send(motorSpeed320);
         send(vehicleSpeed5A0);
         send(abs_1A0);
 
-//        send(engineDA0);
+        send(engineDA0);
     }
     if (timer1Hz.event()) {
         distance_counter = 1;
@@ -134,21 +136,10 @@ void CANApplication::loopTransmit() {
         send(engine);
     }
     if (timer1Hz.event()) {
-        static unsigned int index = 0;
-        static unsigned int scan = 0x01;
-
-        snortXXXFrame.frame[index] = scan & 0xff;
+        snortXXXFrame.shift();
         send(snortXXXFrame);
         printSendTrace(snortXXXFrame);
-
-        scan <<= 1;
-        if ((scan & 0xff) == 0) {
-            snortXXXFrame.frame[index] = scan & 0xff;
-            scan = 0x01;
-            index = (index + 1) % 8;
-        }
     }
-
 //    send(defaultFrame);
 }
 
