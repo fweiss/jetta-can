@@ -11,6 +11,7 @@
 #include <frame/MotorSpeed320Frmae.h>
 #include <frame/TraceFrame.h>
 #include <frame/VehicleSpeed5A0Frame.h>
+#include <frame/SnortXXXFrame.h>
 #include "mcp_can.h"
 
 #include "LoopTimer.h"
@@ -50,6 +51,7 @@ private:
     EngineDA0Frame engineDA0;
     Immobilizer3D0Frame immobilizer;
     MotorSpeed320Frame motorSpeed320;
+    SnortXXXFrame snortXXXFrame;
 
     LoopTimer timer1Hz;
     LoopTimer timer5Hz;

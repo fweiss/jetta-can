@@ -60,13 +60,15 @@ void CANApplication::loopTransmitQuery() {
 //        byte data[] = { 0x02, 0x01, 0x0c, 0, 0, 0, 0, 0 };
         // byte data[] = { 0x0200, 0x1f, 0xc0, 0, 0, 0, 0, 0 };
         byte data[] = { 0x020, 0x1f, 0xc0, 0, 0, 0, 0, 0 };
+
+        // what is this for?
         BaseFrame frame(0x7DF, 0, data);
         send(frame);
     }
 }
 
 void CANApplication::send(BaseFrame& frame) {
-//    printSendTrace(frame);
+    // printSendTrace(frame);
 
     byte status = can.sendMsgBuf(frame.id, frame.ext, 8, frame.getBytes(), true);
     if (status == CAN_OK) {
@@ -132,6 +134,19 @@ void CANApplication::loopTransmit() {
         send(engine);
     }
     if (timer1Hz.event()) {
+        static unsigned int index = 0;
+        static unsigned int scan = 0x01;
+
+        snortXXXFrame.frame[index] = scan & 0xff;
+        send(snortXXXFrame);
+        printSendTrace(snortXXXFrame);
+
+        scan <<= 1;
+        if ((scan & 0xff) == 0) {
+            snortXXXFrame.frame[index] = scan & 0xff;
+            scan = 0x01;
+            index = (index + 1) % 8;
+        }
     }
 
 //    send(defaultFrame);
