@@ -17,8 +17,9 @@ Indicator lights, starting from the bottom CW (defualt Red):
 - EPC
 - fuel cap (Y)
 - oil (R/Y)
-- high beam (B)
+- park
 - fog beam (Y)
+- high beam (B)
 - gas (Y)
 - engine check
 
@@ -41,7 +42,7 @@ Lights outer starting from bottom CW:
 - break wear
 - ABS (Y)
 - offroad (Y)
-- E brake
+- brake
 - cruise
 - tire pressure (Y)
 - lane
@@ -223,10 +224,12 @@ Trying to get the speedometer to hold a stady speed.
 - PGN 5A0+1A0 (either of them), but goes to zero after ~5 sec
 - PGN 5A0+1A0+DA0, steady for a few seconds at a time, flutters, goes to zero momentarily
 - without DA0, goes to zero after ~5 sec
-- moving 5A0 to 1 sec interval, smaller twiitches, but eventully zero
+- moving 5A0 to 1 sec interval, smaller twitches, but eventully zero
 
 ## Links and references
 [Overview of VW CAN Bus](http://www.volkspage.net/technik/ssp/ssp/SSP_238.pdf)
 
 [Savvy CAN hacking](https://www.voltlog.com/tag/vw-can-bus-dbc-file/)
+
+[Golf MkIV DBC](https://github.com/commaai/opendbc/blob/master/vw_golf_mk4.dbc)
 
